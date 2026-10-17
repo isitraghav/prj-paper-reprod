@@ -1,0 +1,40 @@
+# environments (rebuild per machine, see init.md §4)
+envs/
+.venv/
+__pycache__/
+*.pyc
+
+# secrets
+.env
+*.key
+roboflow.json
+
+# downloaded code (re-cloned at pinned commits, see init.md §5)
+code/gbh-yolov5/
+code/yolov5-v7.0/
+
+# datasets (re-downloaded; keep frozen splits + manifests)
+datasets/*
+!datasets/.gitkeep
+!datasets/splits/
+!datasets/raw/
+datasets/raw/*/*
+!datasets/raw/*/MANIFEST.txt
+
+# weights (keep checksums only)
+weights/*
+!weights/SHA256SUMS
+*.pt
+*.pth
+*.onnx
+
+# training outputs (keep summaries and sanity images)
+results/*
+!results/.gitkeep
+!results/summary.csv
+!results/summary.md
+!results/sanity/
+runs/
+wandb/
+*.log
+nohup.out
