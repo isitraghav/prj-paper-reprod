@@ -138,5 +138,6 @@ No code released; re-implemented from the paper (`code/repro/p3/`). Details and 
 | Envs (uv, locked) | [x] | p3cnn TF 2.10.1 GPU; p3svm OpenCV 3.4.18 + sklearn 0.22 (exact TF 1.4 / OpenCV 3.3.1 not feasible, user kept these) |
 | Data + frozen split | [x] | ELPV @93e82ae, 1968/656 = paper Table 3 per type × label |
 | SVM (KAZE/VGG + VLAD + linear SVM) | [x] | test acc_w **69.70 %**, F1_w **66.32 %**, AUC_w 74.88 % (paper 82.44 / 82.52 / 88.51) |
-| CNN (VGG-19 regression, 100+100 ep, batch 16) | [~] started 23:16 | ETA ~03:30; per-epoch checkpoints |
-| P3 summary vs paper | [ ] | after CNN |
+| CNN (VGG-19 regression, 100+100 ep, batch 16) | [x] | test acc_w **86.49 %**, F1_w 84.20 %, AUC_w 90.18 % (paper 88.42 / 88.39) |
+| SVM bounded check (unstated details, training-CV selection) | [x] | KAZE thr 0.0001, no PCA, C 1 → acc_w **79.65 %**, F1_w 77.09 %, AUC_w 84.08 % |
+| P3 summary vs paper | [x] | `init.md` § P3 results; CNN > SVM reproduces; SVM gap = keypoint density |
