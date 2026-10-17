@@ -1,0 +1,14 @@
+[2026-10-17 15:12:26] start p2_v5s (full, 100 ep, batch 16)
+[2026-10-17 15:52:13] done  p2_v5s exit 0
+[2026-10-17 15:52:13] start p2_v5_improved (full, 100 ep, batch 16)
+[2026-10-17 16:11:20] done  p2_v5_improved exit 1
+[2026-10-17 16:11:20] start p2_v8s (full, 100 ep, batch 16)
+[2026-10-17 16:11:24] abort p2_v5_improved at epoch 7 (VRAM 9.35 GB reserved with max_split_size_mb:128, ~3.1 min/ep); restarting without it
+[2026-10-17 16:11:31] done  p2_v8s exit 127
+[2026-10-17 16:11:40] start p2_v5_improved (full, 100 ep, batch 16)
+[2026-10-17 19:38:10] done  p2_v5_improved exit 0
+[2026-10-17 19:38:10] start p2_v8s (full, 100 ep, batch 16)
+[2026-10-17 20:02:56] done  p2_v8s exit 1
+[2026-10-17 20:03:00] abort p2_v8s at epoch 3: commit exhausted (trainer 16 GB + 6 workers x 3.5 GB; ultralytics val loader uses 2x workers); restarting with workers=1
+[2026-10-17 20:03:17] start p2_v8s (full, 100 ep, batch 16)
+[2026-10-17 21:26:55] done  p2_v8s exit 0

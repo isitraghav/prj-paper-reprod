@@ -30,12 +30,27 @@ weights/*
 *.pth
 *.onnx
 
-# training outputs (keep summaries and sanity images)
+# final trained models: tracked with Git LFS (see .gitattributes, models/README.md)
+!models/**/*.pt
+
+# training outputs (keep summaries, sanity images, and the text/plot outputs of final P2/P3 runs)
 results/*
 !results/.gitkeep
 !results/summary.csv
 !results/summary.md
 !results/sanity/
+!results/p1/
+!results/p2/
+!results/p3/
+results/p2/yolov8n.pt
+results/p3/cnn_smoke*
+results/p3/*.stdout
+results/**/*.jpg
+results/**/*.h5
+results/**/*.npz
+results/**/ckpt_stage*/
+results/**/events.out.tfevents*
+!results/**/*.log
 runs/
 wandb/
 *.log

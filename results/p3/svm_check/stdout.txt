@@ -1,0 +1,29 @@
+[2026-10-18 04:13:43] thr 0.001: keypoints/cell mean 87 (mono 47, poly 116), zero 83
+[2026-10-18 04:14:25] thr 0.001 pcaw32  : best inner-CV F1 0.7370
+[2026-10-18 04:14:35] thr 0.001 pcaw64  : best inner-CV F1 0.7337
+[2026-10-18 04:14:51] thr 0.001 pcaw128 : best inner-CV F1 0.7234
+[2026-10-18 04:15:11] thr 0.001 pcaw256 : best inner-CV F1 0.7391
+[2026-10-18 04:25:51] thr 0.001 nopca   : best inner-CV F1 0.7650
+[2026-10-18 04:28:29] thr 0.001 regw0.1 : best inner-CV F1 0.5883
+[2026-10-18 04:30:46] thr 0.001 regw1   : best inner-CV F1 0.7481
+[2026-10-18 04:30:47] thr 0.0003: keypoints/cell mean 258 (mono 117, poly 358), zero 10
+[2026-10-18 04:31:35] thr 0.0003 pcaw32  : best inner-CV F1 0.7747
+[2026-10-18 04:31:41] thr 0.0003 pcaw64  : best inner-CV F1 0.7953
+[2026-10-18 04:31:49] thr 0.0003 pcaw128 : best inner-CV F1 0.7998
+[2026-10-18 04:32:01] thr 0.0003 pcaw256 : best inner-CV F1 0.7707
+[2026-10-18 04:43:12] thr 0.0003 nopca   : best inner-CV F1 0.7996
+[2026-10-18 04:44:39] thr 0.0003 regw0.1 : best inner-CV F1 0.6043
+[2026-10-18 04:45:56] thr 0.0003 regw1   : best inner-CV F1 0.7809
+[2026-10-18 04:49:43] thr 0.0001: keypoints/cell mean 507 (mono 261, poly 681), zero 5
+[2026-10-18 04:50:55] thr 0.0001 pcaw32  : best inner-CV F1 0.7746
+[2026-10-18 04:51:00] thr 0.0001 pcaw64  : best inner-CV F1 0.7992
+[2026-10-18 04:51:08] thr 0.0001 pcaw128 : best inner-CV F1 0.8061
+[2026-10-18 04:51:20] thr 0.0001 pcaw256 : best inner-CV F1 0.7993
+[2026-10-18 04:59:58] thr 0.0001 nopca   : best inner-CV F1 0.8132
+[2026-10-18 05:00:41] thr 0.0001 regw0.1 : best inner-CV F1 0.6349
+[2026-10-18 05:01:26] thr 0.0001 regw1   : best inner-CV F1 0.8014
+[2026-10-18 05:01:27] SELECTED (training CV only): KAZE thr 0.0001, nopca, C 1, inner-CV F1 0.8132
+[2026-10-18 05:02:41] TEST (single evaluation of the selected config)
+all   n= 656  acc_w  79.65  F1_w  77.09  acc  75.61  F1  73.67  AUC_w  84.08  AUC  81.80
+mono  n= 259  acc_w  80.06  F1_w  77.66  acc  75.68  F1  73.87  AUC_w  86.55  AUC  84.29
+poly  n= 397  acc_w  79.39  F1_w  76.71  acc  75.57  F1  73.53  AUC_w  82.38  AUC  80.18

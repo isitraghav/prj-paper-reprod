@@ -1,0 +1,46 @@
+{
+ "meta": {
+  "kaze_threshold": 0.001,
+  "descriptor": "OpenCV xfeatures2d VGG_create() defaults (120-d)",
+  "vlad": {
+   "K": 100,
+   "n_codebooks": 5,
+   "power_alpha": 0.5,
+   "l2": true
+  },
+  "pca_whitened_dims": 32,
+  "C": 0.1,
+  "opencv": "3.4.18 contrib",
+  "sklearn": "0.22.2.post1",
+  "decision": "defective iff score > 0"
+ },
+ "test": {
+  "all": {
+   "n": 656,
+   "acc_weighted": 0.6969991944146081,
+   "f1_macro_weighted": 0.6632215997294542,
+   "acc": 0.6615853658536586,
+   "f1_macro": 0.6372223716856485,
+   "auc_weighted": 0.7487747627227939,
+   "auc": 0.7132503386069566
+  },
+  "mono": {
+   "n": 259,
+   "acc_weighted": 0.6681769608890789,
+   "f1_macro_weighted": 0.6433892107603507,
+   "acc": 0.640926640926641,
+   "f1_macro": 0.6258446339531198,
+   "auc_weighted": 0.7437855866587254,
+   "auc": 0.7153516819571866
+  },
+  "poly": {
+   "n": 397,
+   "acc_weighted": 0.7156318218243113,
+   "f1_macro_weighted": 0.6756770417574407,
+   "acc": 0.6750629722921915,
+   "f1_macro": 0.6435744858544733,
+   "auc_weighted": 0.7510828938748801,
+   "auc": 0.7091508438818566
+  }
+ }
+}
