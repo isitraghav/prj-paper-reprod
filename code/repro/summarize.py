@@ -42,10 +42,10 @@ def delta(a, b):
 
 rows = []
 for run, p in PAPER.items():
-    n, t = parse(EVAL / f'{run}_notta.log'), parse(EVAL / f'{run}_tta.log')
+    n, t, t8 = parse(EVAL / f'{run}_notta.log'), parse(EVAL / f'{run}_tta.log'), parse(EVAL / f'{run}_tta832.log')
     rows.append(dict(run=run, model=p['model'],
                      P=n and n['P'], R=n and n['R'], map50=n and n['map50'], map=n and n['map'],
-                     map50_tta=t and t['map50'], paper_P=p['P'], paper_R=p['R'], paper_map50=p['map50'],
+                     map50_tta=t and t['map50'], map50_tta832=t8 and t8['map50'], paper_P=p['P'], paper_R=p['R'], paper_map50=p['map50'],
                      paper_map=p['map'], paper_map50_t2=p['map50_t2'], paper_map50_tta=p['map50_tta'],
                      machine=MACHINE, batch=BATCH))
 
@@ -58,13 +58,14 @@ with open(out / 'summary.csv', 'w', newline='') as f:
 md = ['# P2 reproduction summary (ELDDS1400C5 test split, 190 images, 640 px)', '',
       f'Machine: {MACHINE}. Batch: {BATCH}. Settings and deviations: `init.md` §3, §11.', '',
       '| Model | P (paper / ours) | R (paper / ours) | mAP@.5 (paper T1 / ours / Δ) | mAP@.5:.95 (paper / ours / Δ) '
-      '| mAP@.5 no TTA (paper T2 / ours / Δ) | mAP@.5 TTA (paper T2 / ours / Δ) |',
-      '|---|---|---|---|---|---|---|']
+      '| mAP@.5 no TTA (paper T2 / ours / Δ) | mAP@.5 TTA @640 (paper T2 / ours / Δ) | TTA @832 (sensitivity) |',
+      '|---|---|---|---|---|---|---|---|']
 for r in rows:
     md.append(f"| {r['model']} | {fmt(r['paper_P'])} / {fmt(r['P'])} | {fmt(r['paper_R'])} / {fmt(r['R'])} "
               f"| {fmt(r['paper_map50'])} / {fmt(r['map50'])} / {delta(r['map50'], r['paper_map50'])} "
               f"| {fmt(r['paper_map'])} / {fmt(r['map'])} / {delta(r['map'], r['paper_map'])} "
               f"| {fmt(r['paper_map50_t2'])} / {fmt(r['map50'])} / {delta(r['map50'], r['paper_map50_t2'])} "
-              f"| {fmt(r['paper_map50_tta'])} / {fmt(r['map50_tta'])} / {delta(r['map50_tta'], r['paper_map50_tta'])} |")
+              f"| {fmt(r['paper_map50_tta'])} / {fmt(r['map50_tta'])} / {delta(r['map50_tta'], r['paper_map50_tta'])} "
+              f"| {fmt(r['map50_tta832'])} |")
 (out / 'summary.md').write_text('\n'.join(md) + '\n', encoding='utf8')
 print('\n'.join(md))

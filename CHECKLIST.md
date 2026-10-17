@@ -74,8 +74,8 @@ UV_PROJECT_ENVIRONMENT="$PWD/envs/p2" uv sync --project code/repro/env/p2 --froz
 | smoke p2_v8s | 16 × 4 | [x] | 55 s/ep | mAP@.5 0.049 → 0.406 → 0.522 |
 | eval pipeline (smoke weights) | | [x] | | DIoU-NMS ≈ NMS (0.326 vs 0.328) after 2 fixes (fp16, time limit); v8 TTA wrapper works (0.522 → 0.560) |
 | **p2_v5s** | 16 × 4 | [x] 15:12–15:52, exit 0 | 0.65 h | best.pt (ep 96) on test: P 0.746, R 0.711, mAP@.5 **0.755** (paper 0.738), mAP@.5:.95 0.516 (paper 0.502) |
-| **p2_v5_improved** | 16 × 4 | [~] started 15:52 | ~2 h est. | |
-| **p2_v8s** | 16 × 4 | [ ] queued | ~1.8 h est. | |
+| **p2_v5_improved** | 16 × 4 | [x] 16:12–19:38, exit 0 | 3.42 h | best.pt (ep 94) on test, standard NMS: P 0.749, R 0.727, mAP@.5 **0.753** (paper 0.763), mAP@.5:.95 0.513 (paper 0.516). First attempt aborted (alloc setting, see init.md §11.16) |
+| **p2_v8s** | 16 × 4 | [~] started 19:38 | ~1.5 h est. | |
 
 ## 6. P2 evaluation (test split, 640)
 Run after training: `bash code/repro/p2/eval_p2.sh && envs/p2/Scripts/python.exe -I code/repro/summarize.py`

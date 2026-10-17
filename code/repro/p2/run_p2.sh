@@ -5,6 +5,8 @@
 # step sees 64 images, as the paper's 32 x 2 did, with the same weight-decay scaling.
 # workers=2: on Windows each dataloader worker commits ~3.5 GB and the trainer ~10 GB; 4 workers exceed the commit limit
 # (cudaMalloc then fails with a misleading OOM). Worker count does not change results.
+# YOLOv8 (ultralytics 8.0.99) uses workers=1: its trainer commits ~16 GB and the val loader uses 2x workers, all
+# persistent; workers=2 (=6 processes) exhausted commit and stalled the run (2026-10-17 19:40).
 #
 # usage: bash code/repro/p2/run_p2.sh <smoke|full> <v5s|v5_improved|v8s>...   (from the repo root)
 set -euo pipefail
@@ -31,7 +33,7 @@ for RUN in "$@"; do
     v8s)
       (cd "$OUT" && "$PY" -c "from ultralytics.yolo.cfg import entrypoint; entrypoint()" detect train \
         model="$PRJ/weights/yolov8s.pt" data="$DATA" optimizer=Adam lr0=0.01 epochs=$EPOCHS batch=$BATCH imgsz=640 \
-        close_mosaic=10 seed=0 deterministic=True workers=2 project="$OUT" name="$NAME" exist_ok=True) > "$LOG" 2>&1 || rc=$? ;;
+        close_mosaic=10 seed=0 deterministic=True workers=${WORKERS_V8:-1} project="$OUT" name="$NAME" exist_ok=True) > "$LOG" 2>&1 || rc=$? ;;
     *) echo "unknown run $RUN"; exit 2;;
   esac
   echo "[$(date '+%F %T')] done  $NAME exit $rc" | tee -a "$OUT/runs.txt"
