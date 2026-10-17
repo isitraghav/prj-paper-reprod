@@ -75,15 +75,24 @@ UV_PROJECT_ENVIRONMENT="$PWD/envs/p2" uv sync --project code/repro/env/p2 --froz
 | eval pipeline (smoke weights) | | [x] | | DIoU-NMS ≈ NMS (0.326 vs 0.328) after 2 fixes (fp16, time limit); v8 TTA wrapper works (0.522 → 0.560) |
 | **p2_v5s** | 16 × 4 | [x] 15:12–15:52, exit 0 | 0.65 h | best.pt (ep 96) on test: P 0.746, R 0.711, mAP@.5 **0.755** (paper 0.738), mAP@.5:.95 0.516 (paper 0.502) |
 | **p2_v5_improved** | 16 × 4 | [x] 16:12–19:38, exit 0 | 3.42 h | best.pt (ep 94) on test, standard NMS: P 0.749, R 0.727, mAP@.5 **0.753** (paper 0.763), mAP@.5:.95 0.513 (paper 0.516). First attempt aborted (alloc setting, see init.md §11.16) |
-| **p2_v8s** | 16 × 4 | [~] started 19:38 | ~1.5 h est. | |
+| **p2_v8s** | 16 × 4 | [x] 20:03–21:26, exit 0 | 1.38 h | best.pt: P 0.757, R 0.749, mAP@.5 **0.764** (paper 0.765), mAP@.5:.95 0.549. First attempt aborted at ep 3 (Windows commit exhausted, workers=2 → restarted with workers=1) |
 
-## 6. P2 evaluation (test split, 640)
-Run after training: `bash code/repro/p2/eval_p2.sh && envs/p2/Scripts/python.exe -I code/repro/summarize.py`
-- [ ] p2_v5s: no TTA / TTA
-- [ ] p2_v5_improved (DIoU-NMS): no TTA / TTA
-- [ ] p2_v8s: no TTA / TTA (wrapper needed: 8.0.99 ignores `val augment=True`)
-- [ ] Confusion matrix (conf 0.2, IoU 0.5), PR and F1 curves
-- [ ] `results/summary.md` paper vs ours
+## 6. P2 evaluation (test split, 190 images) — done 2026-10-17 21:33
+`bash code/repro/p2/eval_p2.sh && envs/p2/Scripts/python.exe -I code/repro/summarize.py` → `results/summary.md`, `results/summary.csv`
+
+| Model | mAP@.5 no TTA (paper / ours) | mAP@.5:.95 (paper / ours) | P / R ours (paper) | TTA @640 (paper / ours) | TTA @832 (sensitivity) |
+|---|---|---|---|---|---|
+| YOLOv5s | 0.739 / **0.754** (+0.015) | 0.502 / 0.516 | 0.748 / 0.707 (0.726 / 0.723) | 0.766 / **0.766** (±0) | 0.774 |
+| GAM+ASFF+DIoU-NMS | 0.762 / **0.757** (−0.005) | 0.516 / 0.514 | 0.754 / 0.727 (0.735 / 0.760) | 0.777 / 0.758 (−0.019) | 0.773 |
+| YOLOv8s | 0.765 / **0.764** (−0.001) | — / 0.550 | 0.764 / 0.746 (—) | 0.775 / 0.753 (−0.022) | 0.761 |
+
+Findings:
+- **Without TTA all three models are within ±0.016 mAP@.5 of the paper** (YOLOv8s −0.001, improved −0.005, YOLOv5s +0.015).
+- **The paper's main claim does not reproduce:** GAM+ASFF+DIoU beats YOLOv5s by only +0.003 here (paper +0.023 without TTA, +0.011 with TTA). Our GAM/ASFF placement is inferred (no released code), so this is not conclusive.
+- TTA: YOLOv5s gains exactly as in the paper (+0.012 → 0.766). The improved model gains almost nothing (+0.001), and YOLOv8s *loses* (−0.011) with 8.0.99's TTA (forced on via `v8_val.py`, since 8.0.99's validator ignores `augment`).
+- DIoU-NMS vs standard NMS on the improved model: 0.757 vs 0.753 (+0.004).
+- Discarded: an earlier v5s TTA number (0.727) from a stale eval that ran concurrently with training under memory exhaustion.
+- [x] Confusion matrix, PR and F1 curves: saved per run in `results/p2/eval/<run>_<tta>/` (stock codebase thresholds; not the paper's conf 0.2 / IoU 0.5 for Fig. 16)
 
 ## 7. P1 → runs on the RTX 4070 laptop (8 GB)
 Decision 2026-10-17: P1 moves to the RTX 4070 laptop (faster, more VRAM). Laptop B only finishes P2.

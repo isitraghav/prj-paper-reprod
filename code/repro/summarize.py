@@ -3,10 +3,13 @@
 usage: python -I code/repro/summarize.py            (from the repo root)
 """
 import csv
+import sys
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')  # Windows console is cp1252
 EVAL = ROOT / 'results' / 'p2' / 'eval'
 MACHINE = 'Laptop B (RTX 3050 Laptop 6 GB, Win 11)'
 BATCH = '16 x 4 accum (paper 32 x 2)'

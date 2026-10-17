@@ -368,3 +368,5 @@ $PRJ/envs/p2/bin/yolo detect val model=<best.pt> data=$PRJ/code/repro/p2/eldds.y
 | 2026-10-17 15:12 | Laptop B | 9 Full P2 | Started `run_p2.sh full v5s v5_improved v8s` (100 ep each, batch 16 × 4). |
 | 2026-10-17 | Laptop B | Kaggle (dropped) | Tried running P1 (and P2 at batch 32) on Kaggle via API: first sessions had no GPU/internet (account not phone-verified), then P100 requests were substituted by T4 x2 or queued; user dropped Kaggle. Tooling kept in `code/repro/kaggle/` (unused). |
 | 2026-10-17 | Laptop B | Decision (user) | **P1 runs on an RTX 4070 laptop (8 GB)**: est. YOLOv5s at exact batch 16, GBH 8 × 8 (see CHECKLIST §7). Laptop B finishes P2 + P2 eval only (`run_queue_local.sh`). |
+| 2026-10-17 21:26 | Laptop B | 9 Full P2 done | v5s 0.65 h, GAM+ASFF 3.42 h (after one aborted start), v8s 1.38 h (after one aborted start, workers=1). |
+| 2026-10-17 21:33 | Laptop B | 10 P2 eval | No TTA mAP@.5 (ours/paper): v5s 0.754/0.739, improved (DIoU-NMS) 0.757/0.762, v8s 0.764/0.765. TTA@640: 0.766/0.766, 0.758/0.777, 0.753/0.775. TTA@832 (sensitivity): 0.774, 0.773, 0.761. See `results/summary.md`, CHECKLIST §6. |
