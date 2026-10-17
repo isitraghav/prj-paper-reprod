@@ -370,3 +370,40 @@ $PRJ/envs/p2/bin/yolo detect val model=<best.pt> data=$PRJ/code/repro/p2/eldds.y
 | 2026-10-17 | Laptop B | Decision (user) | **P1 runs on an RTX 4070 laptop (8 GB)**: est. YOLOv5s at exact batch 16, GBH 8 × 8 (see CHECKLIST §7). Laptop B finishes P2 + P2 eval only (`run_queue_local.sh`). |
 | 2026-10-17 21:26 | Laptop B | 9 Full P2 done | v5s 0.65 h, GAM+ASFF 3.42 h (after one aborted start), v8s 1.38 h (after one aborted start, workers=1). |
 | 2026-10-17 21:33 | Laptop B | 10 P2 eval | No TTA mAP@.5 (ours/paper): v5s 0.754/0.739, improved (DIoU-NMS) 0.757/0.762, v8s 0.764/0.765. TTA@640: 0.766/0.766, 0.758/0.777, 0.753/0.775. TTA@832 (sensitivity): 0.774, 0.773, 0.761. See `results/summary.md`, CHECKLIST §6. |
+
+---
+
+## P3: Deitsch et al. 2019, *Automatic classification of defective PV module cells in EL images* (Solar Energy 185)
+Paper: `papers/el-auto-cnn-svg.pdf`. **No code released** (only the dataset). Scope (user, 2026-10-17): the two reported
+models, **CNN** (VGG-19 deep regression) and **best SVM** (KAZE/VGG + VLAD + linear SVM). No ablations / other SVM variants.
+
+### Settings (paper → ours)
+| | Paper | Ours |
+|---|---|---|
+| Data | ELPV, 2624 cells 300×300, 75/25 stratified, 1968/656 (split unpublished) | `zae-bayern/elpv-dataset` @ `93e82ae` (labels unchanged since 2018-03-07); split recreated with **exactly Table 3's counts per type × label**, seed 0 (`datasets/splits/elpv`, `code/repro/p3/elpv_split.py`) |
+| Labels / weights | p ∈ {0, ⅓, ⅔, 1}; defective iff p > 0; confidence weights 1/0.33/0.67/1; class weights c_j = S/(2n_j) | same (`elpv_common.py`) |
+| CNN | ImageNet VGG-19 conv + GAP + FC4096 + FC2048 + 1 neuron, MSE; aug: scale ≤2 %, rot ≤3°, shift ≤2 %, h/v flips, 90° rotations; stage 1 FC only Adam 1e-3 (0.9/0.999/1e-8); stage 2 all layers SGD 5e-4 m 0.9; batch 16; ≤100 epochs each; Keras 2.0 + TF 1.4 | same, **batch 16 physical** (fits); full 100 + 100 epochs, final weights; **TF 2.10.1 tf.keras** (Keras ImageNet VGG-19 weights), py 3.10.11, CUDA 11.8 runtime + cuDNN 8.9.5 pip wheels (`code/repro/env/p3cnn`) |
+| SVM | KAZE detector + VGG descriptor (120-d), OpenCV 3.3.1 defaults, no masking; VLAD (mini-batch k-means), α 0.5, ×5 codebooks, joint PCA whitening, L2; linear SVM (LIBLINEAR, L2, squared hinge), C ∈ 10^{−2..6} by inner 5-fold CV on macro F1; weighted | same with **OpenCV 3.4.18 contrib**, scikit-learn 0.22.2 (LIBLINEAR, MiniBatchKMeans, PCA), py 3.8.20 (`code/repro/env/p3svm`) |
+| Targets | CNN acc **88.42 %**, F1 **88.39 %**; SVM acc **82.44 %**, F1 **82.52 %**; SVM KAZE/VGG AUC 88.51 % | — |
+
+### P3 deviations
+P3-1. Framework: TF 2.10.1 / tf.keras instead of Keras 2.0 + TF 1.4. Same ImageNet VGG-19 weights file. Exact versions checked 2026-10-17 and **not feasible**: TF 1.4 wheels exist only for Python 3.5/3.6, which uv 0.12 cannot provide; TF 1.4 needs CUDA 8 / cuDNN 6, which cannot run on Ampere/Ada GPUs (CPU-only training ≈ 1–2 days); opencv-contrib-python 3.3.x has been removed from PyPI. User decision: keep TF 2.10 (GPU, uv) and OpenCV 3.4.18, document the gap.
+P3-2. CNN output activation not stated in the paper. **Linear** (pure regression). A sigmoid output saturated and never trained (stage-1 loss frozen at 0.5626 for 3 epochs vs linear 9.06 → 0.116; training loss only, no test data).
+P3-3. "90° rotated samples are additionally included": implemented as a random 90° rotation with p = 0.5, so an epoch stays 1968 samples (paper: 196800 = 1968 × 100 augmented samples).
+P3-4. "Maximum of 100 epochs" per stage: we run the full 100 + 100 and evaluate the final weights once (user decision; no early stopping, no test peeking).
+P3-5. Class-balancing weights c_j (Eq. 5) also applied to the CNN as per-sample loss weights (paper describes them for the training set in general).
+P3-6. SVM VLAD codebook size and k-means subset size not stated → K = 100, 100k descriptors per codebook (seeds 0–4).
+P3-7. SVM PCA-whitening output dimension not stated. Full-rank whitening (1968 samples, 60000-d) gave inner-CV F1 ≈ 0.52 (chance); the dimension is therefore selected with C by the inner CV from {32, 64, 128, 256, 512} (training data only). PCA/VLAD fitted once on the full training set (unsupervised), CV selects (dim, C).
+P3-8. OpenCV 3.4.18 instead of 3.3.1 (no 3.3.1 wheels for uv-installable Pythons). KAZE defaults find 0 keypoints on 83/1968 training cells (mostly mono) → empty VLAD for those.
+P3-9. Evaluation: binary (defective iff p > 0), CNN threshold 0.5, SVM decision 0. We report confidence-weighted accuracy/macro-F1 (Table 2 caption: weights are used "for the evaluation") and unweighted, plus ROC AUC, for all/mono/poly. The paper doesn't spell out which variant its 88.42 % / 82.44 % are.
+P3-10. SVM result is far below the paper (see below). Training-split-only check of the unstated VLAD K (inner CV, PCA dim and C re-selected per K): K=16 0.728, 32 0.734, 64 0.744, 100 0.737 (K=256 not finished: run killed by low memory). K is therefore not the cause; K = 100 kept. No further tuning (would drift from the paper).
+P3-11. CNN run 1 was killed at stage-1 epoch 32 (system low on memory: ran concurrently with the SVM K check). Restarted from scratch alone, with per-epoch checkpoints (weights + optimizer state + augmentation RNG; resume tested: optimizer iterations restored, loss continues). Killed run kept in `results/p3/aborted_cnn_oom_ep32/`.
+
+### P3 progress log
+| Date | Machine | Step | Result |
+|---|---|---|---|
+| 2026-10-17 | Laptop B | env | p3cnn: py 3.10.11, TF 2.10.1 (built CUDA 11.2/cuDNN 8), CUDA 11.8 + cuDNN 8.9.5 wheels, GPU OK. p3svm: py 3.8.20, OpenCV 3.4.18, sklearn 0.22.2.post1. |
+| 2026-10-17 | Laptop B | data | ELPV @93e82ae, split 1968/656 = Table 3 exactly (committed `datasets/splits/elpv`). |
+| 2026-10-17 | Laptop B | CNN smoke | batch 16 fits physically (no accumulation); stage 1 ~41 s/ep, stage 2 ~111 s/ep. Sigmoid output did not train → linear (P3-2). |
+| 2026-10-17 22:48 | Laptop B | **SVM done** | KAZE/VGG (mean 87 kp/cell, 83 train cells with 0), VLAD K=100 ×5, PCA-whitened to 32 dims, C = 0.1 (inner-CV F1 0.737). **Test: weighted acc 69.70 %, weighted macro-F1 66.32 %, AUC_w 74.88 %** (unweighted acc 66.16, F1 63.72, AUC 71.33); mono acc_w 66.82, poly 71.56. Paper: acc 82.44, F1 82.52, AUC 88.51. |
+| 2026-10-17 23:16 | Laptop B | CNN full | started alone, 100 + 100 epochs, batch 16, checkpointed. |

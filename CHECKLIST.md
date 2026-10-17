@@ -129,3 +129,14 @@ BATCH_YOLOV5S=16 BATCH_GBH=8 bash code/repro/p1/run_p1.sh smoke yolov5s gbh
 BATCH_YOLOV5S=16 BATCH_GBH=8 bash code/repro/p1/run_p1.sh full yolov5s gbh
 ```
 Then record machine, batch, s/epoch in `init.md` §13, and copy `results/p1/` back (weights are not committed).
+
+## 8. P3: Deitsch et al. 2019 (ELPV: CNN vs SVM), on this machine
+No code released; re-implemented from the paper (`code/repro/p3/`). Details and deviations: `init.md` § P3.
+
+| Item | Status | Notes |
+|---|---|---|
+| Envs (uv, locked) | [x] | p3cnn TF 2.10.1 GPU; p3svm OpenCV 3.4.18 + sklearn 0.22 (exact TF 1.4 / OpenCV 3.3.1 not feasible, user kept these) |
+| Data + frozen split | [x] | ELPV @93e82ae, 1968/656 = paper Table 3 per type × label |
+| SVM (KAZE/VGG + VLAD + linear SVM) | [x] | test acc_w **69.70 %**, F1_w **66.32 %**, AUC_w 74.88 % (paper 82.44 / 82.52 / 88.51) |
+| CNN (VGG-19 regression, 100+100 ep, batch 16) | [~] started 23:16 | ETA ~03:30; per-epoch checkpoints |
+| P3 summary vs paper | [ ] | after CNN |
