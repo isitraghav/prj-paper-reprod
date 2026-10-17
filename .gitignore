@@ -19,6 +19,7 @@ datasets/*
 !datasets/splits/
 !datasets/raw/
 datasets/raw/*/*
+datasets/raw/PV-Multi-Defect/
 !datasets/raw/*/MANIFEST.txt
 
 # weights (keep checksums only)

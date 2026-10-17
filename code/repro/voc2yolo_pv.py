@@ -1,0 +1,122 @@
+"""PV-Multi-Defect (VOC xml) -> YOLO txt, with a frozen, committed train/val split.
+
+- Uses all 1108 jpgs in JPEGImages (= paper's 886 + 222). The 2 jpgs without an xml
+  (defect-free) get an empty label file, i.e. background images, as YOLOv5 treats them.
+- Fails on any class name outside the paper's 5.
+- Split: seeded, stratified by the rarest class present in each image, exactly
+  --n-val images in val. If the split files exist they are reused, never regenerated.
+- Committed split files hold dataset-relative names ("images/img10010.jpg"), so they are
+  machine independent. Per machine this script writes absolute-path list files and a
+  data.yaml into --dst (gitignored); GBH's loader mangles relative "./../" entries.
+
+usage: python -I voc2yolo_pv.py --src datasets/raw/PV-Multi-Defect --dst datasets/pv_multi_defect_yolo \
+           --splits datasets/splits/pv_multi_defect [--seed 0 --n-val 222]
+"""
+import argparse
+import random
+import shutil
+import xml.etree.ElementTree as ET
+from collections import Counter, defaultdict
+from pathlib import Path
+
+NAMES = ['broken', 'hot_spot', 'black_border', 'scratch', 'no_electricity']
+FIG5 = {'hot_spot': 49.09, 'scratch': 36.62, 'black_border': 6.02, 'no_electricity': 4.28, 'broken': 3.99}
+
+
+def convert(xml):
+    r = ET.parse(xml).getroot()
+    w, h = float(r.find('size/width').text), float(r.find('size/height').text)
+    out = []
+    for o in r.iter('object'):
+        name = o.find('name').text.strip()
+        if name not in NAMES:
+            raise SystemExit(f'unknown class {name!r} in {xml}')
+        b = o.find('bndbox')
+        x1, y1, x2, y2 = (float(b.find(k).text) for k in ('xmin', 'ymin', 'xmax', 'ymax'))
+        x1, x2 = max(0.0, min(x1, x2)), min(w, max(x1, x2))
+        y1, y2 = max(0.0, min(y1, y2)), min(h, max(y1, y2))
+        if x2 - x1 < 1 or y2 - y1 < 1:
+            print(f'  skip degenerate box in {xml.name}: {name} {x1, y1, x2, y2}')
+            continue
+        out.append((NAMES.index(name), (x1 + x2) / 2 / w, (y1 + y2) / 2 / h, (x2 - x1) / w, (y2 - y1) / h))
+    return out
+
+
+def split(labels, seed, n_val):
+    total = Counter(c for L in labels.values() for c in {b[0] for b in L})
+    strata = defaultdict(list)
+    for stem, L in sorted(labels.items()):
+        cls = {b[0] for b in L}
+        strata[min(cls, key=lambda c: total[c]) if cls else -1].append(stem)
+    rng = random.Random(seed)
+    frac = n_val / len(labels)
+    val, rest = [], []
+    for k in sorted(strata):
+        s = strata[k][:]
+        rng.shuffle(s)
+        m = round(len(s) * frac)
+        val += s[:m]
+        rest += s[m:]
+    rng.shuffle(rest)
+    while len(val) < n_val:  # fix rounding drift to hit n_val exactly
+        val.append(rest.pop())
+    while len(val) > n_val:
+        rest.append(val.pop())
+    return sorted(set(labels) - set(val)), sorted(val)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--src', required=True)
+    ap.add_argument('--dst', required=True)
+    ap.add_argument('--splits', required=True)
+    ap.add_argument('--seed', type=int, default=0)
+    ap.add_argument('--n-val', type=int, default=222)
+    a = ap.parse_args()
+    src, dst, sp = Path(a.src), Path(a.dst).resolve(), Path(a.splits)
+
+    jpgs = {p.stem: p for p in sorted((src / 'JPEGImages').glob('*.jpg'))}
+    xmls = {p.stem: p for p in sorted((src / 'Annotations').glob('*.xml'))}
+    if set(xmls) - set(jpgs):
+        raise SystemExit(f'xml without jpg: {sorted(set(xmls) - set(jpgs))}')
+    print(f'{len(jpgs)} jpg, {len(xmls)} xml; jpg without xml (background): {sorted(set(jpgs) - set(xmls))}')
+
+    labels = {s: (convert(xmls[s]) if s in xmls else []) for s in jpgs}
+    (dst / 'images').mkdir(parents=True, exist_ok=True)
+    (dst / 'labels').mkdir(parents=True, exist_ok=True)
+    for s, L in labels.items():
+        shutil.copy2(jpgs[s], dst / 'images' / f'{s}.jpg')
+        (dst / 'labels' / f'{s}.txt').write_text(''.join(f'{c} {x:.6f} {y:.6f} {w:.6f} {h:.6f}\n' for c, x, y, w, h in L))
+
+    if (sp / 'train.txt').exists() and (sp / 'val.txt').exists():
+        tr = [l.split('/')[-1][:-4] for l in (sp / 'train.txt').read_text().split()]
+        va = [l.split('/')[-1][:-4] for l in (sp / 'val.txt').read_text().split()]
+        print(f'reusing frozen split in {sp}')
+    else:
+        tr, va = split(labels, a.seed, a.n_val)
+        sp.mkdir(parents=True, exist_ok=True)
+        (sp / 'train.txt').write_text(''.join(f'images/{s}.jpg\n' for s in tr))
+        (sp / 'val.txt').write_text(''.join(f'images/{s}.jpg\n' for s in va))
+        print(f'wrote new split to {sp} (seed {a.seed})')
+    assert not set(tr) & set(va) and set(tr) | set(va) == set(labels), 'split does not cover the dataset'
+
+    for name, stems in (('train', tr), ('val', va)):
+        (dst / f'{name}.txt').write_text(''.join(f'{(dst / "images" / (s + ".jpg")).as_posix()}\n' for s in stems))
+    (dst / 'data.yaml').write_text(
+        f'# generated by code/repro/voc2yolo_pv.py from {sp.as_posix()} -- do not edit\n'
+        f'train: {(dst / "train.txt").as_posix()}\nval: {(dst / "val.txt").as_posix()}\n'
+        f'nc: {len(NAMES)}\nnames: {NAMES}\n')
+
+    print(f'\nsplit: train {len(tr)}, val {len(va)}')
+    boxes = Counter(b[0] for L in labels.values() for b in L)
+    n = sum(boxes.values())
+    print(f'{"class":16s} {"boxes":>6s} {"%":>6s} {"Fig5 %":>7s} {"train":>6s} {"val":>5s}  (box counts)')
+    btr = Counter(b[0] for s in tr for b in labels[s])
+    bva = Counter(b[0] for s in va for b in labels[s])
+    for i, c in enumerate(NAMES):
+        print(f'{c:16s} {boxes[i]:6d} {100 * boxes[i] / n:6.2f} {FIG5[c]:7.2f} {btr[i]:6d} {bva[i]:5d}')
+    print(f'{"total":16s} {n:6d}  (Fig. 5: 4235)')
+
+
+if __name__ == '__main__':
+    main()

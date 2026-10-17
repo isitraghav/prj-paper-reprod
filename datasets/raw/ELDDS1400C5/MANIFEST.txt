@@ -1,0 +1,9 @@
+workspace: fma04-fayoum-edu-eg
+project: eldds1400c5-dataset
+version: 1
+augmentation: {}
+preprocessing: {'auto-orient': True, 'resize': {'width': 640, 'format': 'Stretch to', 'height': 640}}
+counts: {'train': 1188, 'test': 190}
+total: 1378
+nc: 11
+names: ['0 Examined', '1 ShortCircuitString', '2 ShortCircuitCell -LowPowerCell-', '3 Crack', '4 MicroCrack', '5 OtherError', 'Contamination', 'DarkSpot', 'Examined', 'MicroCrack', 'Scratch']

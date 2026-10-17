@@ -133,6 +133,13 @@ uv pip install --python envs/p2/bin/python \
   gitpython psutil thop seaborn pandas "tensorboard<2.12" "protobuf<4"
 ```
 
+**Current method (2026-10-17, supersedes the `uv pip install` lines above):** both envs are locked uv projects. On any machine:
+```bash
+UV_PROJECT_ENVIRONMENT="$PWD/envs/p1" uv sync --project code/repro/env/p1 --frozen   # py 3.8.20, torch 1.8.1+cu111
+UV_PROJECT_ENVIRONMENT="$PWD/envs/p2" uv sync --project code/repro/env/p2 --frozen   # py 3.8.8,  torch 1.11.0+cu113
+```
+(`UV_PROJECT_ENVIRONMENT` must be absolute, otherwise it is resolved inside the project folder. On Windows the interpreter is `envs/pX/Scripts/python.exe`.)
+
 Sanity check (both envs):
 ```bash
 for e in p1 p2; do envs/$e/bin/python -c "import torch;print('$e',torch.__version__,torch.cuda.is_available(),torch.cuda.get_device_name(0));print((torch.ones(2,device='cuda')*2).sum())"; done
@@ -316,12 +323,22 @@ $PRJ/envs/p2/bin/yolo detect val model=<best.pt> data=$PRJ/code/repro/p2/eldds.y
 1. Physical batch is smaller than the paper's. The effective batch stays 64 through `nbs` accumulation; BN statistics and warm-up iterations differ. (Fill in per run.)
 2. GPUs are RTX 2050 / 3050 instead of RTX 3090 (P1) / Tesla P100 (P2).
 3. P2 env uses torch 1.11.0 **+cu113**, because there is no cu111 wheel for 1.11.
-4. P1 train/val split is re-created (stratified, seed 0, 80/20), since the original split is unpublished and unseeded. 1106 annotated images instead of 1108.
+4. P1 train/val split is re-created (stratified by rarest class present, seed 0, exactly 886/222), since the original split is unpublished and unseeded. All **1108** images are used, as in the paper: the 2 jpgs without an xml (`img3059`, `img9513`, defect-free) are background images with empty label files. (The "1113 jpg" in §12 counted the 5 README illustrations `tf1-5.jpg`.) Box counts: 3981 vs Fig. 5's 4235; shares broken 2.46 / hot_spot 52.22 / black_border 6.43 / scratch 34.34 / no_electricity 4.55 % vs Fig. 5's 3.99 / 49.09 / 6.02 / 36.62 / 4.28.
 5. P1 authors' `prepare_data.py` and `data/voc_pv.yaml` are not used: they contain 8 classes from an unrelated project (`write, read, lookup, ...`).
 6. P1 architecture comes from the paper text. The released `models/yolov5s_pv.yaml` (C3 in the neck, GhostConv in the backbone only) is documented, and the outcome of the step-6 check is: _TBD_.
-7. P2 GAM and ASFF are re-implemented by us, and the GAM placement is calibrated to the Table 2 GFLOPs: _TBD_.
+7. P2 GAM and ASFF are re-implemented by us (`code/repro/p2/yolov5_v7.0_p2.patch`, yamls from `code/repro/p2/make_yamls.py`). GAM placement calibrated to Table 2 GFLOPs @640, nc=6: **grouped GAM (groups=4, channel shuffle, rate 4) after SPPF (backbone) and after each of the 3 neck outputs (P3/P4/P5)**. Ours vs paper: YOLOv5s 16.0 / 16; GAM-only 21.6 / 21.4; ASFF-only 24.4 / 25.8; GAM+ASFF **30.0 / 30.0**; YOLOv8s 28.8 (nc=80) / 28.7. A single full (ungrouped) GAM anywhere gives 21.2 / 29.7 and only sits in one place, contradicting "backbone and neck". Paper's own numbers aren't additive (5.4 + 9.8 ≠ 14.0), so ASFF-only can't be matched at the same time as GAM+ASFF. ASFF follows Liu et al. 2019 (maxpool+3×3 s2 conv down, 1×1 conv + nearest up, 1×1 weight convs with 16 ch, softmax, 3×3 expand), every level fusing the unfused PAN maps.
 8. P2 ultralytics version: 8.0.99 (the paper doesn't state it; this was the last release before submission).
 9. One run per model (the papers report ±95 % CI).
+10. P2 dataset: Roboflow has a single version (v1, no augmentation, stretched to 640×640): train 1188 / test 190, 11 class names. Ids 0–5 are the paper's 6 classes (Examined + 5 defects; P2 says "five categories of defects" and "six classes"). Ids 6–10 (Contamination, DarkSpot, Examined, MicroCrack, Scratch, 25 boxes) occur only in 2 train images (`panel_04…`, `panel_10…`) that have no paper-class label; those 2 images are **excluded** → **1186 train / 190 test** (paper 1187 / 190), `nc=6`. No val split exists, so val = test for training-time best.pt selection, as in the paper.
+11. P2 DIoU: the paper's section shows both DIoU-NMS and DIoU-loss equations, but contribution 2 says "replacement of the default NMS with DIoU". We implement DIoU-NMS at inference only (CIoU training loss unchanged).
+12. ultralytics 8.0.99 silently ignores `yolo val augment=True` (the validator calls `model(img)` without `augment`). YOLOv8 TTA numbers use our wrapper that forces augmented inference.
+13. GBH repo `train.py` @51ee042 has a leading space on line 1 (IndentationError) and can't run as published. Fixed by `code/repro/p1/gbh_51ee042_fix.patch` (whitespace only).
+14. Windows (Laptop B): the NVIDIA driver silently spills CUDA memory into system RAM ("Sysmem Fallback"), so an over-large batch doesn't OOM, it just becomes very slow. Batch fit is judged by speed and VRAM, not by OOM.
+16. P2 physical batch: **16 for all three models** (paper 32). Measured on the 6 GB card: batch 32 spills for every model and crashed YOLOv5s (`CUDA error: resource already mapped`). 16 is the largest divisor of 64 that fits all three. With `nbs=64` accumulation, each optimizer step sees 64 images, the same as the paper's 32 × 2, with identical weight-decay scaling (0.0005 × 16·4/64 = 0.0005). Only difference: BN batch statistics (16 vs 32). Warm-up is identical in epochs: both codebases use max(3 epochs, 100 iters), which is 3 epochs for the paper (38 it/ep) and for us (75 it/ep). (P1 differs: GBH uses max(3 epochs, **1000** iters), i.e. ~18 epochs at batch 16 vs ~4.5 at batch 4; to note when P1 runs.) GAM+ASFF at batch 16 sits at 5.7 GB reserved and spills slightly (epoch time 1:54 vs 0:58); A first full run with `PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128` made it worse (9.35 GB reserved, ~3.1 min/ep) and was aborted at epoch 7 (`results/p2/aborted_v5_improved_allocconf/`); the setting was removed and the run restarted from scratch (no numerical effect either way).
+17. P2 GAM+ASFF loads only 198/535 tensors from COCO `yolov5s.pt`: yolov5 matches by layer index + shape, and the inserted GAM layers shift every neck/head index, so the neck/head start from scratch. Any yaml-based yolov5 GAM model behaves this way (likely the authors' too; unverifiable).
+18. DIoU-NMS is a Python greedy loop (~90 ms/img vs ~6 ms for torchvision NMS). It is exempted from v7's NMS time limit, which otherwise silently drops all detections for the rest of a batch (seen: mAP@.5 0.184 instead of 0.326). Computed in fp32 (fp16 overflows areas > 65504). With distance term off it reproduces torchvision NMS exactly (tested on real predictions). Inference timings are therefore not comparable to P2's.
+19. Windows: dataloader `workers=2` (4 exceeds the commit limit: trainer ~10 GB + ~3.5 GB/worker → misleading CUDA OOM). yolov5 v7's font download (`Arial.ttf`) fails on a 308 redirect under Python 3.8, so the fonts were fetched with curl into `%APPDATA%/Ultralytics` (plot labels only).
+15. Envs: `roboflow` is **not** in envs/p2 (it pins opencv-python-headless 4.10, which clashes with opencv-python). The download runs in a throwaway `uv run --with roboflow` env. `ipython` added to p2 (imported by yolov5 v7.0 `models/common.py`). Exact package lists: `code/repro/env/p{1,2}.freeze.txt`.
 
 ---
 
@@ -341,3 +358,13 @@ $PRJ/envs/p2/bin/yolo detect val model=<best.pt> data=$PRJ/code/repro/p2/eldds.y
 | Date | Machine | Step | Result / notes |
 |---|---|---|---|
 | 2026-10-17 | Laptop A (RTX 2050 4 GB, 7 GB RAM) | 0 Planning | Repo initialised. Papers, runbook and `.gitignore` committed. Nothing executed yet. |
+| 2026-10-17 | Laptop B (RTX 3050 Laptop 6 GB, 15 GB RAM, Ryzen 7 7840HS, Win 11, driver 595.97) | 4 Envs | uv 0.12.0, CPython 3.8.20. p1: torch 1.8.1+cu111, cuDNN 8005. p2: torch 1.11.0+cu113, cuDNN 8200, ultralytics 8.0.99. Both see the GPU. Windows python path is `envs/pX/Scripts/python.exe`. Freeze lists in `code/repro/env/`. |
+| 2026-10-17 | Laptop B | 5 Code/data | GBH @51ee042, yolov5 v7.0 @915bbf2, PV-Multi-Defect @2c4df0c. Weights SHA256 in `weights/SHA256SUMS` (first v7.0 download was truncated, re-downloaded). P1: 1108 imgs → split 886/222 committed (`datasets/splits/pv_multi_defect`). P2: ELDDS v1 → 1186/190, 6 classes, split committed (`datasets/splits/eldds1400c5`). Sanity images in `results/sanity/` look correct. |
+| 2026-10-17 | Laptop B | 6 P1 arch check | Fused counts (test.py fuses; Table 6 is "on the test set"): YOLOv5s **224 / 7.065 M = paper exactly**. BCSP in backbone only (neck C3) = **228 / 7.153 M = paper YOLOv5-1 exactly**. Released `yolov5s_pv.yaml` 290 / 7.04 M; paper-strict `gbh_paper.yaml` 320 / 6.63 M; paper GBH 270 / 7.24 M. A 32-way grid over Conv/Ghost × C3/BCSP × 3/4 heads hits neither 270 nor 290 / 7.72 (YOLOv5-2). **Awaiting user decision** on which GBH yaml to train. |
+| 2026-10-17 | Laptop B | 7 P2 GFLOPs | See §11 item 7. Chosen: `code/repro/p2/yolov5s-gam-asff.yaml` = 30.0 G. |
+| 2026-10-17 | Laptop B | Decisions (user) | P1 GBH = **released** `yolov5s_pv.yaml`. Train P2 now; **P1 deferred** (long runs). Exact paper params wherever possible; envs moved to locked uv projects (`code/repro/env/p{1,2}/`), P2 Python now 3.8.8. |
+| 2026-10-17 | Laptop B | 8 Batch probe | Synthetic AMP fwd+bwd (`code/repro/mem_probe.py`), max batch without spill: P1 GBH@960 **6**, P1 YOLOv5s@960 **12**, P2 YOLOv5s **24**, P2 GAM+ASFF **16**, P2 YOLOv8s **24** (paper: 16 / 16 / 32 / 32 / 32). |
+| 2026-10-17 | Laptop B | 8 Smoke (P2, 3 ep, batch 16, workers 2) | v5s 45 s/ep, mAP@.5 → 0.376 · GAM+ASFF 1–2 min/ep → 0.295 · v8s 55 s/ep → 0.522. Batch 32 crashed. Eval pipeline checked (2 DIoU-NMS bugs fixed, §11 item 18; v8 TTA wrapper 0.522 → 0.560). |
+| 2026-10-17 15:12 | Laptop B | 9 Full P2 | Started `run_p2.sh full v5s v5_improved v8s` (100 ep each, batch 16 × 4). |
+| 2026-10-17 | Laptop B | Kaggle (dropped) | Tried running P1 (and P2 at batch 32) on Kaggle via API: first sessions had no GPU/internet (account not phone-verified), then P100 requests were substituted by T4 x2 or queued; user dropped Kaggle. Tooling kept in `code/repro/kaggle/` (unused). |
+| 2026-10-17 | Laptop B | Decision (user) | **P1 runs on an RTX 4070 laptop (8 GB)**: est. YOLOv5s at exact batch 16, GBH 8 × 8 (see CHECKLIST §7). Laptop B finishes P2 + P2 eval only (`run_queue_local.sh`). |
