@@ -1,0 +1,13 @@
+[2026-10-18 02:42:53] thr 0.001: keypoints/cell mean 87 (mono 47, poly 116), zero 83
+[2026-10-18 02:43:25] thr 0.001 pcaw32  : best inner-CV F1 0.7370
+[2026-10-18 02:43:33] thr 0.001 pcaw64  : best inner-CV F1 0.7337
+[2026-10-18 02:43:44] thr 0.001 pcaw128 : best inner-CV F1 0.7234
+[2026-10-18 02:44:01] thr 0.001 pcaw256 : best inner-CV F1 0.7391
+[2026-10-18 02:52:11] thr 0.001 nopca   : best inner-CV F1 0.7650
+[2026-10-18 02:54:14] thr 0.001 regw0.1 : best inner-CV F1 0.5883
+[2026-10-18 02:56:13] thr 0.001 regw1   : best inner-CV F1 0.7481
+[2026-10-18 02:58:29] thr 0.0003: keypoints/cell mean 258 (mono 117, poly 358), zero 10
+[2026-10-18 02:59:23] thr 0.0003 pcaw32  : best inner-CV F1 0.7747
+[2026-10-18 02:59:29] thr 0.0003 pcaw64  : best inner-CV F1 0.7953
+[2026-10-18 02:59:37] thr 0.0003 pcaw128 : best inner-CV F1 0.7998
+[2026-10-18 02:59:50] thr 0.0003 pcaw256 : best inner-CV F1 0.7707

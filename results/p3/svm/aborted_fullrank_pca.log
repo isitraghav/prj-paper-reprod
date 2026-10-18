@@ -1,0 +1,13 @@
+[2026-10-17 22:19:13] opencv 3.4.18 | K 100 N_VLAD 5 subset 100000
+[2026-10-17 22:20:40] KAZE/VGG descriptors in 87s
+[2026-10-17 22:20:40] keypoints/cell train: mean 87, min 0, max 519, zero 83
+[2026-10-17 22:20:48] VLAD 1/5 done
+[2026-10-17 22:20:56] VLAD 2/5 done
+[2026-10-17 22:21:04] VLAD 3/5 done
+[2026-10-17 22:21:12] VLAD 4/5 done
+[2026-10-17 22:21:18] VLAD 5/5 done
+[2026-10-17 22:21:45] VLAD dim 60000 -> PCA-whitened 1968
+[2026-10-17 22:21:45] C=0.01: inner-CV macro F1 (weighted) 0.4227
+[2026-10-17 22:21:46] C=0.1: inner-CV macro F1 (weighted) 0.5070
+[2026-10-17 22:21:48] C=1: inner-CV macro F1 (weighted) 0.5169
+[2026-10-17 22:22:05] C=10: inner-CV macro F1 (weighted) 0.5107

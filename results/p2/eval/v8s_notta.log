@@ -1,0 +1,293 @@
+Ultralytics YOLOv8.0.99  Python-3.8.8 torch-1.11.0+cu113 CUDA:0 (NVIDIA GeForce RTX 3050 6GB Laptop GPU, 6144MiB)
+Model summary (fused): 168 layers, 11127906 parameters, 0 gradients, 28.4 GFLOPs
+[34m[1mval: [0mScanning C:\Users\Lenovo\prj-paper-reprod\datasets\raw\ELDDS1400C5\test\labels.cache... 190 images, 0 backgrounds, 0 corrupt: 100%|██████████| 190/190 [00:00<?, ?it/s][34m[1mval: [0mScanning C:\Users\Lenovo\prj-paper-reprod\datasets\raw\ELDDS1400C5\test\labels.cache... 190 images, 0 backgrounds, 0 corrupt: 100%|██████████| 190/190 [00:00<?, ?it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):   0%|          | 0/12 [00:00<?, ?it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):   8%|▊         | 1/12 [00:00<00:06,  1.65it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  17%|█▋        | 2/12 [00:01<00:06,  1.48it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  25%|██▌       | 3/12 [00:01<00:06,  1.50it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  33%|███▎      | 4/12 [00:02<00:05,  1.55it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  42%|████▏     | 5/12 [00:02<00:03,  1.92it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  50%|█████     | 6/12 [00:03<00:02,  2.14it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  58%|█████▊    | 7/12 [00:03<00:02,  2.40it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  67%|██████▋   | 8/12 [00:03<00:01,  2.58it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  75%|███████▌  | 9/12 [00:04<00:01,  2.75it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  83%|████████▎ | 10/12 [00:04<00:00,  2.89it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 11/12 [00:04<00:00,  2.92it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 12/12 [00:05<00:00,  3.13it/s]                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 12/12 [00:05<00:00,  2.34it/s]
+                   all        190       2530      0.764      0.746      0.764       0.55
+              Examined        190        190      0.997          1      0.995      0.995
+    ShortCircuitString        190         50      0.897      0.871      0.959      0.815
+ShortCircuitCell-LowPowerCell        190        134      0.846      0.933      0.966      0.817
+                 Crack        190         84       0.75      0.748      0.787      0.369
+            MicroCrack        190       1161      0.454      0.438       0.33      0.111
+            OtherError        190        911      0.643      0.483      0.545      0.195
+Speed: 0.5ms preprocess, 11.2ms inference, 0.0ms loss, 3.0ms postprocess per image
+Results saved to [1mC:\Users\Lenovo\prj-paper-reprod\results\p2\eval\v8s_notta[0m
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'
+Exception ignored in: <function StorageWeakRef.__del__ at 0x000002BA8C8D3790>
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\multiprocessing\reductions.py", line 36, in __del__
+  File "C:\Users\Lenovo\prj-paper-reprod\envs\p2\lib\site-packages\torch\storage.py", line 520, in _free_weak_ref
+AttributeError: 'NoneType' object has no attribute '_free_weak_ref'

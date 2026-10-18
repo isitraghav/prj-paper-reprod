@@ -1,0 +1,259 @@
+[2026-10-17 22:32:52] opencv 3.4.18 | K 100 N_VLAD 5 subset 100000
+[2026-10-17 22:32:52] loaded cached descriptors
+[2026-10-17 22:32:52] keypoints/cell train: mean 87, min 0, max 519, zero 83
+[2026-10-17 22:33:00] VLAD 1/5 done
+[2026-10-17 22:33:08] VLAD 2/5 done
+[2026-10-17 22:33:16] VLAD 3/5 done
+[2026-10-17 22:33:25] VLAD 4/5 done
+[2026-10-17 22:33:29] VLAD 5/5 done
+[2026-10-17 22:33:44] VLAD dim 60000 -> PCA-whitened up to 512
+[2026-10-17 22:33:44] PCA   32  C=0.01: inner-CV macro F1 (weighted) 0.7315
+[2026-10-17 22:33:44] PCA   32  C=0.1: inner-CV macro F1 (weighted) 0.7370
+[2026-10-17 22:33:44] PCA   32  C=1: inner-CV macro F1 (weighted) 0.7340
+[2026-10-17 22:33:44] PCA   32  C=10: inner-CV macro F1 (weighted) 0.7334
+[2026-10-17 22:33:48] PCA   32  C=100: inner-CV macro F1 (weighted) 0.7329
+[2026-10-17 22:34:01] PCA   32  C=1000: inner-CV macro F1 (weighted) 0.7321
+[2026-10-17 22:34:13] PCA   32  C=10000: inner-CV macro F1 (weighted) 0.6656
+[2026-10-17 22:34:26] PCA   32  C=100000: inner-CV macro F1 (weighted) 0.5465
+[2026-10-17 22:34:38] PCA   32  C=1e+06: inner-CV macro F1 (weighted) 0.5712
+[2026-10-17 22:34:38] PCA   64  C=0.01: inner-CV macro F1 (weighted) 0.7048
+[2026-10-17 22:34:38] PCA   64  C=0.1: inner-CV macro F1 (weighted) 0.7292
+[2026-10-17 22:34:38] PCA   64  C=1: inner-CV macro F1 (weighted) 0.7337
+[2026-10-17 22:34:39] PCA   64  C=10: inner-CV macro F1 (weighted) 0.7320
+[2026-10-17 22:34:49] PCA   64  C=100: inner-CV macro F1 (weighted) 0.7326
+[2026-10-17 22:35:15] PCA   64  C=1000: inner-CV macro F1 (weighted) 0.7300
+[2026-10-17 22:35:42] PCA   64  C=10000: inner-CV macro F1 (weighted) 0.6624
+[2026-10-17 22:36:09] PCA   64  C=100000: inner-CV macro F1 (weighted) 0.6447
+[2026-10-17 22:36:34] PCA   64  C=1e+06: inner-CV macro F1 (weighted) 0.6191
+[2026-10-17 22:36:34] PCA  128  C=0.01: inner-CV macro F1 (weighted) 0.6582
+[2026-10-17 22:36:34] PCA  128  C=0.1: inner-CV macro F1 (weighted) 0.7219
+[2026-10-17 22:36:34] PCA  128  C=1: inner-CV macro F1 (weighted) 0.7228
+[2026-10-17 22:36:35] PCA  128  C=10: inner-CV macro F1 (weighted) 0.7242
+[2026-10-17 22:36:49] PCA  128  C=100: inner-CV macro F1 (weighted) 0.7239
+[2026-10-17 22:37:28] PCA  128  C=1000: inner-CV macro F1 (weighted) 0.7249
+[2026-10-17 22:38:08] PCA  128  C=10000: inner-CV macro F1 (weighted) 0.6820
+[2026-10-17 22:38:49] PCA  128  C=100000: inner-CV macro F1 (weighted) 0.5996
+[2026-10-17 22:39:29] PCA  128  C=1e+06: inner-CV macro F1 (weighted) 0.6601
+[2026-10-17 22:39:29] PCA  256  C=0.01: inner-CV macro F1 (weighted) 0.5112
+[2026-10-17 22:39:29] PCA  256  C=0.1: inner-CV macro F1 (weighted) 0.7242
+[2026-10-17 22:39:30] PCA  256  C=1: inner-CV macro F1 (weighted) 0.7320
+[2026-10-17 22:39:31] PCA  256  C=10: inner-CV macro F1 (weighted) 0.7349
+[2026-10-17 22:39:50] PCA  256  C=100: inner-CV macro F1 (weighted) 0.7316
+[2026-10-17 22:40:49] PCA  256  C=1000: inner-CV macro F1 (weighted) 0.7342
+[2026-10-17 22:41:52] PCA  256  C=10000: inner-CV macro F1 (weighted) 0.7088
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+[2026-10-17 22:42:54] PCA  256  C=100000: inner-CV macro F1 (weighted) 0.6245
+[2026-10-17 22:43:58] PCA  256  C=1e+06: inner-CV macro F1 (weighted) 0.6984
+[2026-10-17 22:43:58] PCA  512  C=0.01: inner-CV macro F1 (weighted) 0.3903
+[2026-10-17 22:43:58] PCA  512  C=0.1: inner-CV macro F1 (weighted) 0.7057
+[2026-10-17 22:43:58] PCA  512  C=1: inner-CV macro F1 (weighted) 0.7207
+[2026-10-17 22:44:01] PCA  512  C=10: inner-CV macro F1 (weighted) 0.7036
+[2026-10-17 22:44:27] PCA  512  C=100: inner-CV macro F1 (weighted) 0.6846
+[2026-10-17 22:45:33] PCA  512  C=1000: inner-CV macro F1 (weighted) 0.6612
+[2026-10-17 22:46:36] PCA  512  C=10000: inner-CV macro F1 (weighted) 0.6523
+[2026-10-17 22:47:38] PCA  512  C=100000: inner-CV macro F1 (weighted) 0.6564
+[2026-10-17 22:48:41] PCA  512  C=1e+06: inner-CV macro F1 (weighted) 0.6543
+[2026-10-17 22:48:41] selected PCA dim 32, C=0.1 (inner-CV F1 0.7370)
+TEST
+all   n= 656  acc_w  69.70  F1_w  66.32  acc  66.16  F1  63.72  AUC_w  74.88  AUC  71.33
+mono  n= 259  acc_w  66.82  F1_w  64.34  acc  64.09  F1  62.58  AUC_w  74.38  AUC  71.54
+poly  n= 397  acc_w  71.56  F1_w  67.57  acc  67.51  F1  64.36  AUC_w  75.11  AUC  70.92
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "
+C:\Users\Lenovo\prj-paper-reprod\envs\p3svm\lib\site-packages\sklearn\svm\_base.py:946: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn("Liblinear failed to converge, increase "

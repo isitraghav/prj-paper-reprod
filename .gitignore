@@ -50,8 +50,8 @@ results/**/*.h5
 results/**/*.npz
 results/**/ckpt_stage*/
 results/**/events.out.tfevents*
-!results/**/*.log
 runs/
 wandb/
 *.log
 nohup.out
+!results/p[123]/**/*.log

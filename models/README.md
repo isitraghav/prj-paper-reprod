@@ -24,7 +24,10 @@ Test split `datasets/splits/elpv/test.txt` (656 cells). Weighted = confidence we
 
 | File | Model | Test acc_w / F1_w / AUC_w | Paper acc / F1 |
 |---|---|---|---|
-| `p3/cnn_vgg19_seed0.h5` | VGG-19 regression, final weights after 100 + 100 epochs (Keras `save_weights`) | 86.49 / 84.20 / 90.18 | 88.42 / 88.39 |
+| `p3/cnn_vgg19_seed0.h5` | VGG-19 regression, final weights after 100 + 100 epochs (Keras `save_weights`); primary run | 86.49 / 84.20 / 90.18 | 88.42 / 88.39 |
+| `p3/cnn_vgg19_seed1.h5` | same settings, seed 1 | 85.87 / 83.29 / 89.43 | |
+| `p3/cnn_vgg19_seed2.h5` | same settings, seed 2 | 84.98 / 82.66 / 90.86 | |
+| | CNN mean ± sd over seeds 0–2 | 85.78 ± 0.76 / 83.38 ± 0.77 / 90.16 ± 0.72 | 88.42 / 88.39 |
 | `p3/svm_kaze_vgg_vlad_strict.npz` | KAZE (OpenCV defaults) / VGG + 5×VLAD (K 100) + PCA-whitening 32 + linear SVM, C 0.1 | 69.70 / 66.32 / 74.88 | 82.44 / 82.52 |
 | `p3/svm_kaze_vgg_vlad_thr1e-4_nopca.npz` | same, KAZE threshold 1e-4, no PCA, C 1 (bounded check, init.md P3-12) | 79.65 / 77.09 / 84.08 | 82.44 / 82.52 |
 

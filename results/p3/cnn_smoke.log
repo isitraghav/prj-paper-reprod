@@ -1,0 +1,166 @@
+[2026-10-17 22:23:07] tf 2.10.1 gpus [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')] args {'root': '.', 'out': 'results/p3/cnn_smoke', 'epochs': 1, 'batch': 16, 'micro': 0, 'seed': 0, 'stages': '12'}
+[2026-10-17 22:23:13] train (1968, 300, 300) test (656, 300, 300) class weights functional 0.8778 defective 1.1617
+2026-10-17 22:23:13.080054: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-10-17 22:23:14.005963: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 3625 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3050 6GB Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.6
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/vgg19/vgg19_weights_tf_dim_ordering_tf_kernels_notop.h5
+
+    8192/80134624 [..............................] - ETA: 0s
+   32768/80134624 [..............................] - ETA: 2:55
+   49152/80134624 [..............................] - ETA: 8:43
+   81920/80134624 [..............................] - ETA: 9:45
+  114688/80134624 [..............................] - ETA: 7:48
+  147456/80134624 [..............................] - ETA: 6:43
+  163840/80134624 [..............................] - ETA: 6:45
+  196608/80134624 [..............................] - ETA: 6:07
+  229376/80134624 [..............................] - ETA: 5:40
+  262144/80134624 [..............................] - ETA: 5:13
+  294912/80134624 [..............................] - ETA: 4:52
+  360448/80134624 [..............................] - ETA: 4:13
+  425984/80134624 [..............................] - ETA: 3:46
+  483328/80134624 [..............................] - ETA: 3:28
+  540672/80134624 [..............................] - ETA: 3:14
+  622592/80134624 [..............................] - ETA: 2:55
+  720896/80134624 [..............................] - ETA: 2:37
+  835584/80134624 [..............................] - ETA: 2:21
+  966656/80134624 [..............................] - ETA: 2:06
+ 1097728/80134624 [..............................] - ETA: 1:54
+ 1245184/80134624 [..............................] - ETA: 1:44
+ 1425408/80134624 [..............................] - ETA: 1:33
+ 1638400/80134624 [..............................] - ETA: 1:23
+ 1875968/80134624 [..............................] - ETA: 1:15
+ 2154496/80134624 [..............................] - ETA: 1:07
+ 2449408/80134624 [..............................] - ETA: 1:00
+ 2826240/80134624 [>.............................] - ETA: 53s 
+ 3235840/80134624 [>.............................] - ETA: 47s
+ 3710976/80134624 [>.............................] - ETA: 42s
+ 4259840/80134624 [>.............................] - ETA: 37s
+ 4849664/80134624 [>.............................] - ETA: 33s
+ 5521408/80134624 [=>............................] - ETA: 29s
+ 6316032/80134624 [=>............................] - ETA: 26s
+ 7077888/80134624 [=>............................] - ETA: 23s
+ 7831552/80134624 [=>............................] - ETA: 21s
+ 8536064/80134624 [==>...........................] - ETA: 20s
+ 9306112/80134624 [==>...........................] - ETA: 18s
+10076160/80134624 [==>...........................] - ETA: 17s
+10813440/80134624 [===>..........................] - ETA: 16s
+11534336/80134624 [===>..........................] - ETA: 15s
+12378112/80134624 [===>..........................] - ETA: 14s
+13107200/80134624 [===>..........................] - ETA: 14s
+13860864/80134624 [====>.........................] - ETA: 13s
+14622720/80134624 [====>.........................] - ETA: 12s
+15360000/80134624 [====>.........................] - ETA: 12s
+16105472/80134624 [=====>........................] - ETA: 11s
+16842752/80134624 [=====>........................] - ETA: 11s
+17620992/80134624 [=====>........................] - ETA: 10s
+18317312/80134624 [=====>........................] - ETA: 10s
+19087360/80134624 [======>.......................] - ETA: 10s
+19841024/80134624 [======>.......................] - ETA: 9s 
+20611072/80134624 [======>.......................] - ETA: 9s
+21331968/80134624 [======>.......................] - ETA: 9s
+22102016/80134624 [=======>......................] - ETA: 8s
+22822912/80134624 [=======>......................] - ETA: 8s
+23592960/80134624 [=======>......................] - ETA: 8s
+24346624/80134624 [========>.....................] - ETA: 8s
+25092096/80134624 [========>.....................] - ETA: 7s
+25837568/80134624 [========>.....................] - ETA: 7s
+26460160/80134624 [========>.....................] - ETA: 7s
+27410432/80134624 [=========>....................] - ETA: 7s
+28246016/80134624 [=========>....................] - ETA: 6s
+28950528/80134624 [=========>....................] - ETA: 6s
+29704192/80134624 [==========>...................] - ETA: 6s
+30400512/80134624 [==========>...................] - ETA: 6s
+31170560/80134624 [==========>...................] - ETA: 6s
+31899648/80134624 [==========>...................] - ETA: 6s
+32620544/80134624 [===========>..................] - ETA: 5s
+33357824/80134624 [===========>..................] - ETA: 5s
+34062336/80134624 [===========>..................] - ETA: 5s
+34725888/80134624 [============>.................] - ETA: 5s
+35528704/80134624 [============>.................] - ETA: 5s
+36274176/80134624 [============>.................] - ETA: 5s
+36864000/80134624 [============>.................] - ETA: 5s
+37847040/80134624 [=============>................] - ETA: 4s
+38526976/80134624 [=============>................] - ETA: 4s
+39231488/80134624 [=============>................] - ETA: 4s
+39927808/80134624 [=============>................] - ETA: 4s
+40607744/80134624 [==============>...............] - ETA: 4s
+41328640/80134624 [==============>...............] - ETA: 4s
+41984000/80134624 [==============>...............] - ETA: 4s
+42754048/80134624 [===============>..............] - ETA: 4s
+43491328/80134624 [===============>..............] - ETA: 4s
+44236800/80134624 [===============>..............] - ETA: 3s
+44695552/80134624 [===============>..............] - ETA: 3s
+45424640/80134624 [================>.............] - ETA: 3s
+46178304/80134624 [================>.............] - ETA: 3s
+46891008/80134624 [================>.............] - ETA: 3s
+47652864/80134624 [================>.............] - ETA: 3s
+48390144/80134624 [=================>............] - ETA: 3s
+49143808/80134624 [=================>............] - ETA: 3s
+49782784/80134624 [=================>............] - ETA: 3s
+50610176/80134624 [=================>............] - ETA: 3s
+51355648/80134624 [==================>...........] - ETA: 3s
+52092928/80134624 [==================>...........] - ETA: 2s
+52822016/80134624 [==================>...........] - ETA: 2s
+53510144/80134624 [===================>..........] - ETA: 2s
+54427648/80134624 [===================>..........] - ETA: 2s
+55246848/80134624 [===================>..........] - ETA: 2s
+55926784/80134624 [===================>..........] - ETA: 2s
+56745984/80134624 [====================>.........] - ETA: 2s
+57524224/80134624 [====================>.........] - ETA: 2s
+58277888/80134624 [====================>.........] - ETA: 2s
+59015168/80134624 [=====================>........] - ETA: 2s
+59785216/80134624 [=====================>........] - ETA: 2s
+60547072/80134624 [=====================>........] - ETA: 1s
+61325312/80134624 [=====================>........] - ETA: 1s
+62046208/80134624 [======================>.......] - ETA: 1s
+62808064/80134624 [======================>.......] - ETA: 1s
+63578112/80134624 [======================>.......] - ETA: 1s
+64225280/80134624 [=======================>......] - ETA: 1s
+65249280/80134624 [=======================>......] - ETA: 1s
+65961984/80134624 [=======================>......] - ETA: 1s
+66732032/80134624 [=======================>......] - ETA: 1s
+67485696/80134624 [========================>.....] - ETA: 1s
+68222976/80134624 [========================>.....] - ETA: 1s
+68984832/80134624 [========================>.....] - ETA: 1s
+69713920/80134624 [=========================>....] - ETA: 1s
+70516736/80134624 [=========================>....] - ETA: 0s
+71278592/80134624 [=========================>....] - ETA: 0s
+72040448/80134624 [=========================>....] - ETA: 0s
+72777728/80134624 [==========================>...] - ETA: 0s
+73531392/80134624 [==========================>...] - ETA: 0s
+74285056/80134624 [==========================>...] - ETA: 0s
+74997760/80134624 [===========================>..] - ETA: 0s
+75743232/80134624 [===========================>..] - ETA: 0s
+76464128/80134624 [===========================>..] - ETA: 0s
+77201408/80134624 [===========================>..] - ETA: 0s
+77905920/80134624 [============================>.] - ETA: 0s
+78626816/80134624 [============================>.] - ETA: 0s
+79364096/80134624 [============================>.] - ETA: 0s
+80117760/80134624 [============================>.] - ETA: 0s
+80134624/80134624 [==============================] - 7s 0us/step
+[2026-10-17 22:23:22] params 30518337
+[2026-10-17 22:23:22] stage 1: trainable vars 6, batch 16 as 1 x 16
+2026-10-17 22:23:23.460398: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8905
+2026-10-17 22:23:23.590077: E tensorflow/core/platform/windows/subprocess.cc:287] Call to CreateProcess failed. Error code: 2, command: '"ptxas.exe" "--version"'
+2026-10-17 22:23:23.591494: E tensorflow/core/platform/windows/subprocess.cc:287] Call to CreateProcess failed. Error code: 2, command: '"ptxas.exe" "--version"'
+2026-10-17 22:23:23.591523: W tensorflow/stream_executor/gpu/asm_compiler.cc:80] Couldn't get ptxas version string: INTERNAL: Couldn't invoke ptxas.exe --version
+2026-10-17 22:23:23.594765: E tensorflow/core/platform/windows/subprocess.cc:287] Call to CreateProcess failed. Error code: 2, command: '"ptxas.exe" "C:\Users\Lenovo\AppData\Local\Temp\/tempfile-DESKTOP-D5RCH7G-4f24-23200-65e0c1e70cd76" "-o" "C:\Users\Lenovo\AppData\Local\Temp\/tempfile-DESKTOP-D5RCH7G-4f24-23200-65e0c1e70d45e" "-arch=sm_86" "--warn-on-spills"'
+2026-10-17 22:23:23.595078: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] INTERNAL: Failed to launch ptxas
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2026-10-17 22:23:23.987804: W tensorflow/core/common_runtime/bfc_allocator.cc:290] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.11GiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+2026-10-17 22:23:23.987916: W tensorflow/core/common_runtime/bfc_allocator.cc:290] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.11GiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+2026-10-17 22:23:24.115630: W tensorflow/core/common_runtime/bfc_allocator.cc:290] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.56GiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+2026-10-17 22:23:24.115694: W tensorflow/core/common_runtime/bfc_allocator.cc:290] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.56GiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+2026-10-17 22:23:24.470378: W tensorflow/core/common_runtime/bfc_allocator.cc:290] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.56GiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+2026-10-17 22:23:24.470474: W tensorflow/core/common_runtime/bfc_allocator.cc:290] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.56GiB with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+2026-10-17 22:23:25.796767: W tensorflow/core/common_runtime/bfc_allocator.cc:360] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. You may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
+2026-10-17 22:23:26.078559: I tensorflow/stream_executor/cuda/cuda_blas.cc:1614] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+[2026-10-17 22:24:08] stage 1 epoch 1/1 loss 0.56068 (45s)
+[2026-10-17 22:24:51] stage 2: trainable vars 38, batch 16 as 1 x 16
+[2026-10-17 22:26:43] stage 2 epoch 1/1 loss 0.56257 (111s)
+[2026-10-17 22:27:02] TEST (final weights)
+all   n= 656  acc_w  35.05  F1_w  25.95  acc  41.01  F1  29.08  AUC_w  50.00  AUC  50.00
+mono  n= 259  acc_w  35.88  F1_w  26.41  acc  42.08  F1  29.62  AUC_w  50.00  AUC  50.00
+poly  n= 397  acc_w  34.51  F1_w  25.66  acc  40.30  F1  28.73  AUC_w  50.00  AUC  50.00

@@ -404,10 +404,13 @@ P3-12. SVM bounded check (user-approved, `code/repro/p3/svm_bounded_check.py`, `
 | Model | acc_w | F1_w | AUC_w | acc / F1 / AUC (unweighted) | mono acc_w | poly acc_w | Paper acc / F1 |
 |---|---|---|---|---|---|---|---|
 | CNN (final weights, 100+100 ep) | **86.49** | 84.20 | 90.18 | 80.95 / 78.75 / 87.75 | 85.63 | 87.04 | 88.42 / 88.39 |
+| CNN seed 1 (same settings) | 85.87 | 83.29 | 89.43 | 79.73 / 77.08 / 87.06 | 85.48 | 86.12 | |
+| CNN seed 2 (same settings) | 84.98 | 82.66 | 90.86 | 79.12 / 76.86 / 88.21 | 83.35 | 86.03 | |
+| **CNN mean ± sd (seeds 0–2)** | **85.78 ± 0.76** | **83.38 ± 0.77** | 90.16 ± 0.72 | | | | 88.42 / 88.39 |
 | SVM strict (paper defaults) | 69.70 | 66.32 | 74.88 | 66.16 / 63.72 / 71.33 | 66.82 | 71.56 | 82.44 / 82.52 |
 | SVM better-specified (P3-12) | **79.65** | 77.09 | 84.08 | 75.61 / 73.67 / 81.80 | 80.06 | 79.39 | 82.44 / 82.52 |
 
-Findings: the paper's ranking (CNN > SVM) reproduces. CNN is 1.9 points below on accuracy, 4.2 on F1. The SVM matches only after densifying keypoints beyond the stated "OpenCV defaults" (−2.8 points remaining); with the stated defaults it is 12.7 points below.
+Findings: the paper's ranking (CNN > SVM) reproduces. CNN is 1.9 points below on accuracy, 4.2 on F1 (seed 0); over three seeds 2.6 ± 0.8 below on accuracy and 5.0 ± 0.8 on F1, i.e. a systematic gap (~3.5 sd), not seed noise. The paper's F1 is "averaged over the individual per-class F1 scores" (macro), as ours. The gap comes from low recall on defective cells (seed 0: 69 % weighted recall vs 96 % for functional; no threshold in 0.2–0.5 raises macro F1 above 84.5), consistent with the unreproducible Keras 2.0/TF 1.4 stack (P3-1) and the 90°-rotation reading (P3-3). The SVM matches only after densifying keypoints beyond the stated "OpenCV defaults" (−2.8 points remaining); with the stated defaults it is 12.7 points below.
 
 ### P3 progress log
 | Date | Machine | Step | Result |
@@ -419,3 +422,4 @@ Findings: the paper's ranking (CNN > SVM) reproduces. CNN is 1.9 points below on
 | 2026-10-17 23:16 | Laptop B | CNN full | started alone, 100 + 100 epochs, batch 16, checkpointed. |
 | 2026-10-18 02:42 | Laptop B | **CNN done** | Test (final weights): acc_w 86.49, F1_w 84.20, AUC_w 90.18. |
 | 2026-10-18 05:02 | Laptop B | **SVM check done** | Selected KAZE thr 0.0001, no PCA, C 1 (inner-CV 0.813). Test acc_w 79.65, F1_w 77.09, AUC_w 84.08 (P3-12). First attempt stopped when the Claude session ended; restarted with cached descriptors. |
+| 2026-10-18 11:46 | Laptop B | **CNN seeds 1, 2** | Identical settings, seeds 1/2 (variance check, no selection). Test acc_w 85.87 / 84.98, F1_w 83.29 / 82.66. Mean ± sd over seeds 0–2: acc_w 85.78 ± 0.76, F1_w 83.38 ± 0.77, AUC_w 90.16 ± 0.72. Seed 0 stays the primary number. |
