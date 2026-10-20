@@ -40,6 +40,7 @@ results/*
 !results/.gitkeep
 !results/summary.csv
 !results/summary.md
+!results/run_p2_after_p1.sh
 !results/sanity/
 !results/p1/
 !results/p2/
