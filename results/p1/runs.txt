@@ -1,0 +1,8 @@
+[2026-10-17 21:18:03] start p1_yolov5s (full, 500 ep, batch 16)
+[2026-10-18 06:55:53] resume p1_yolov5s from last.pt
+[2026-10-18 07:52:21] done  p1_yolov5s exit 0
+[2026-10-18 07:52:21] start p1_gbh (full, 500 ep, batch 8)
+[2026-10-18 13:21:55] done  p1_gbh exit 0
+[2026-10-18 13:22:11] eval p1_yolov5s exit 0
+[2026-10-18 13:22:26] eval p1_gbh exit 0
+[2026-10-18 13:34:37] start p1_yolov5_1 (full, 500 ep, batch 16)

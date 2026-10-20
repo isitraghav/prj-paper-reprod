@@ -6,7 +6,16 @@ Checksums: `models/SHA256SUMS` (`cd models && sha256sum -c SHA256SUMS`). Setting
 `CHECKLIST.md`, `results/`.
 
 ## P1: GBH-YOLOv5 (PV-Multi-Defect)
-Trained on the RTX 4070 laptop (`4070_JOBS.md`); files are added to `models/p1/` when that run is handed back.
+Trained on the RTX 4070 Laptop (8 GB, `4070_JOBS.md`). Val split, 222 images, evaluated at 960 px, batch 1.
+
+| File | Model | mAP@.5 (val) | Paper mAP@.5 | Load with |
+|---|---|---|---|---|
+| `p1/yolov5s.pt` | YOLOv5s v5.0 (baseline; batch 16 = paper) | **86.5** | 78.1 | `code/gbh-yolov5` @51ee042 + `code/repro/p1/gbh_51ee042_fix.patch`, env `p1` |
+| `p1/gbh_yolov5.pt` | GBH-YOLOv5 released yaml (`yolov5s_pv.yaml`; batch 8 × 8 accum) | **82.1** | 97.8 | same |
+| `p1/yolov5_1.pt` | YOLOv5-1 ablation (BottleneckCSP backbone; `code/repro/p1/yolov5_1.yaml`; batch 16; stopped ep 202) | **85.2** | 94.2 | same, cfg `code/repro/p1/yolov5_1.yaml` |
+
+Evaluation command: `(cd code/gbh-yolov5 && ../../envs/p1/Scripts/python.exe test.py --weights ../../models/p1/<file>.pt --data data/pv_multi_defect.yaml --img 960 --batch 1 --task val)`
+Per-class details and deviation notes: `CHECKLIST.md` §7, `init.md` §13.
 
 ## P2: ELDDS1400C5 (EL defect detection, 5 classes)
 `best.pt` of each final run (stripped, fp16), as evaluated in `CHECKLIST.md` §6. Test split, 190 images.

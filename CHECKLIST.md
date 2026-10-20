@@ -97,13 +97,26 @@ Findings:
 ## 7. P1 → runs on the RTX 4070 laptop (8 GB)
 Decision 2026-10-17: P1 moves to the RTX 4070 laptop (faster, more VRAM). Laptop B only finishes P2.
 
-| Run | Batch on 4070 (est.) | Status | Est. time |
+| Run | Batch on 4070 | Status | Time |
 |---|---|---|---|
-| mem probe | — | [ ] | 5 min |
-| smoke (1 epoch each) | 16 / 8 | [ ] | ~5 min |
-| p1_yolov5s (500 ep @ 960) | **16 = paper** | [ ] | ~3.5–4.5 h |
-| p1_gbh (released yaml, 500 ep @ 960) | 8 × 8 accum | [ ] | ~5.5–7 h |
-- [ ] P1 evaluation (val, 960, per-class mAP@.5, P, R, s/img)
+| mem probe | — | [x] | YOLOv5s 8: 6.01 GiB 0.18 s/it · 16: 6.46 GiB 0.58 s/it OK · GBH 4: 5.77 GiB · 8: 5.57 GiB 0.34 s/it OK · 16: 11.4 GiB 34 s/it SPILL |
+| smoke (1 epoch each) | 16 / 8, workers 4 | [x] exit 0 / 0 | v5s 34 s/ep, mAP@.5 0.042 · GBH 54 s/ep, mAP@.5 0.008 |
+| p1_yolov5s (500 ep @ 960) | **16 × 4 accum = paper** | [x] 2026-10-17 21:18 → 2026-10-18 07:52, exit 0 (user pause after ep 350, 01:08–06:56, resumed) | ~20–25 s/ep (ep 20–48 slowed by background GPU apps); best.pt = ep 297 |
+| p1_gbh (released yaml, 500 ep @ 960) | 8 × 8 accum | [x] 2026-10-18 07:52 → 13:22, exit 0 | 5.49 h, ~39 s/ep; best.pt = ep 457 |
+- [x] P1 evaluation (val 222, 960, best.pt, batch 1; `results/p1/eval_p1_*.log`)
+
+| Model | mAP@.5 | P | R | broken | hot_spot | black_border | scratch | no_electricity | mAP@.5:.95 | layers / params (fused) | ms/img |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| YOLOv5s paper | 78.1 | 83.2 | 73.4 | 78.5 | 87.8 | 85.4 | 69.3 | 88.0 | — | 224 / 7.06 M | 484 |
+| **YOLOv5s ours** | **86.5** | 87.1 | 80.9 | 85.0 | 90.2 | 97.4 | 65.5 | 94.3 | 52.9 | 224 / 7.06 M | 17.1 |
+| GBH paper | 97.8 | 96.4 | 93.3 | 99.5 | 97.5 | 97.2 | 97.4 | 98.0 | — | 270 / 7.24 M | 587 |
+| **GBH ours (released yaml)** | **82.1** | 81.1 | 81.2 | 81.0 | 82.8 | 92.3 | 63.4 | 91.1 | 51.3 | 290 / 7.04 M | 20.3 |
+
+→ YOLOv5s baseline is 8.4 above the paper; GBH is 15.7 below the paper and **4.4 below our own YOLOv5s**: the paper's GBH gain does not reproduce (released yaml, re-created split, GBH batch 8).
+
+**Follow-up: YOLOv5-1** (paper ablation, backbone C3 → BottleneckCSP; `code/repro/p1/yolov5_1.yaml`, 228 layers / 7.15 M = paper exactly; batch 16 = paper)
+- [x] Stopped at epoch 202 by the pre-set epoch-200 rule: best mAP@.5 0.861 vs YOLOv5s 0.862 by the same epoch. Resumable from `results/p1/p1_yolov5_1/weights/last.pt`.
+- [x] best.pt (ep 176), val @960: **mAP@.5 85.2** (paper 94.2), P 85.3, R 79.2; broken 77.9 · hot_spot 89.4 · black_border 91.7 · scratch 73.0 · no_electricity 94.1. → The paper's +16.1 from BottleneckCSP does not reproduce, even with an exactly specified model (ours −1.3 vs our YOLOv5s).
 
 **Steps on the 4070 laptop** (Git Bash on Windows, or bash on Linux; repo root):
 ```bash
