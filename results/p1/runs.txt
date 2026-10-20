@@ -6,3 +6,9 @@
 [2026-10-18 13:22:11] eval p1_yolov5s exit 0
 [2026-10-18 13:22:26] eval p1_gbh exit 0
 [2026-10-18 13:34:37] start p1_yolov5_1 (full, 500 ep, batch 16)
+[2026-10-20 20:07:05] start p1_yolov5_2 (full, 500 ep, batch 4)
+[2026-10-20 20:11:15] done  p1_yolov5_2 exit 1
+[2026-10-20 20:11:59] start p1_yolov5_2 (full, 500 ep, batch 4)
+[2026-10-20 20:35:55] done  p1_yolov5_2 exit 127
+[2026-10-20 20:36:12] start p1_yolov5_2 (full, 500 ep, batch 4)
+[2026-10-20 22:10:21] done  p1_yolov5_2 exit 127

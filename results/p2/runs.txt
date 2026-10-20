@@ -12,3 +12,11 @@
 [2026-10-17 20:03:00] abort p2_v8s at epoch 3: commit exhausted (trainer 16 GB + 6 workers x 3.5 GB; ultralytics val loader uses 2x workers); restarting with workers=1
 [2026-10-17 20:03:17] start p2_v8s (full, 100 ep, batch 16)
 [2026-10-17 21:26:55] done  p2_v8s exit 0
+[2026-10-20 20:04:40] start p2_v5_gam (full, 100 ep, batch 16)
+[2026-10-20 20:06:54] done  p2_v5_gam exit 1
+[2026-10-20 20:06:55] start p2_v5_asff (full, 100 ep, batch 16)
+[2026-10-20 20:07:04] done  p2_v5_asff exit 1
+[2026-10-20 20:10:25] start p2_v5_gam (full, 100 ep, batch 16)
+[2026-10-20 20:33:27] done  p2_v5_gam exit 127
+[2026-10-20 20:33:27] start p2_v5_asff (full, 100 ep, batch 16)
+[2026-10-20 20:33:43] done  p2_v5_asff exit 127

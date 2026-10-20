@@ -63,6 +63,21 @@ PY1="$PRJ/envs/p1/Scripts/python.exe"; [ -x "$PY1" ] || PY1="$PRJ/envs/p1/bin/py
 PY2="$PRJ/envs/p2/Scripts/python.exe"; [ -x "$PY2" ] || PY2="$PRJ/envs/p2/bin/python"
 
 # ---------------------------------------------------------------------------
+# 1b. Pre-download Arial.ttf (both codebases fetch it on first run; Python 3.8
+#     urllib doesn't follow the 308 redirect that ultralytics.com now returns)
+# ---------------------------------------------------------------------------
+say "=== STEP 1b: Arial.ttf ==="
+ARIAL_DIR="${APPDATA:-$HOME/AppData/Roaming}/Ultralytics"
+mkdir -p "$ARIAL_DIR"
+if [ ! -f "$ARIAL_DIR/Arial.ttf" ]; then
+  say "  downloading Arial.ttf (308-redirect workaround) ..."
+  curl -fL -o "$ARIAL_DIR/Arial.ttf" https://ultralytics.com/assets/Arial.ttf
+  say "  Arial.ttf downloaded"
+else
+  say "  Arial.ttf already present; skipping"
+fi
+
+# ---------------------------------------------------------------------------
 # 2. Clone yolov5 v7.0 codebase (P2)
 # ---------------------------------------------------------------------------
 say "=== STEP 2: yolov5 v7.0 codebase ==="

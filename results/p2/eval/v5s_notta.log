@@ -1,10 +1,492 @@
-[34m[1mval: [0mdata=C:/Users/Lenovo/prj-paper-reprod/datasets/eldds_yolo/data.yaml, weights=['C:/Users/Lenovo/prj-paper-reprod/results/p2/p2_v5s/weights/best.pt'], batch_size=16, imgsz=640, conf_thres=0.001, iou_thres=0.6, max_det=300, task=test, device=, workers=2, single_cls=False, augment=False, diou_nms=False, verbose=True, save_txt=False, save_hybrid=False, save_conf=False, save_json=False, project=C:/Users/Lenovo/prj-paper-reprod/results/p2/eval, name=v5s_notta, exist_ok=True, half=False, dnn=False
-YOLOv5  v7.0-0-g915bbf2 Python-3.8.8 torch-1.11.0+cu113 CUDA:0 (NVIDIA GeForce RTX 3050 6GB Laptop GPU, 6144MiB)
+[34m[1mval: [0mdata=C:/Users/isitr/Desktop/prj-paper-reprod/datasets/eldds_yolo/data.yaml, weights=['C:/Users/isitr/Desktop/prj-paper-reprod/results/p2/p2_v5s/weights/best.pt'], batch_size=16, imgsz=640, conf_thres=0.001, iou_thres=0.6, max_det=300, task=test, device=, workers=2, single_cls=False, augment=False, diou_nms=False, verbose=True, save_txt=False, save_hybrid=False, save_conf=False, save_json=False, project=C:/Users/isitr/Desktop/prj-paper-reprod/results/p2/eval, name=v5s_notta, exist_ok=True, half=False, dnn=False
+YOLOv5  v7.0-0-g915bbf2 Python-3.8.8 torch-1.11.0+cu113 CUDA:0 (NVIDIA GeForce RTX 4050 Laptop GPU, 6140MiB)
 
 Fusing layers... 
 YOLOv5s summary: 157 layers, 7026307 parameters, 0 gradients, 15.8 GFLOPs
-[34m[1mtest: [0mScanning C:\Users\Lenovo\prj-paper-reprod\datasets\eldds_yolo\test.cache... 190 images, 0 backgrounds, 0 corrupt: 100%|██████████| 190/190 00:00[34m[1mtest: [0mScanning C:\Users\Lenovo\prj-paper-reprod\datasets\eldds_yolo\test.cache... 190 images, 0 backgrounds, 0 corrupt: 100%|██████████| 190/190 00:00
-                 Class     Images  Instances          P          R      mAP50   mAP50-95:   0%|          | 0/12 00:00                 Class     Images  Instances          P          R      mAP50   mAP50-95:   8%|▊         | 1/12 00:01                 Class     Images  Instances          P          R      mAP50   mAP50-95:  17%|█▋        | 2/12 00:02                 Class     Images  Instances          P          R      mAP50   mAP50-95:  25%|██▌       | 3/12 00:03                 Class     Images  Instances          P          R      mAP50   mAP50-95:  33%|███▎      | 4/12 00:04                 Class     Images  Instances          P          R      mAP50   mAP50-95:  42%|████▏     | 5/12 00:05                 Class     Images  Instances          P          R      mAP50   mAP50-95:  50%|█████     | 6/12 00:05                 Class     Images  Instances          P          R      mAP50   mAP50-95:  58%|█████▊    | 7/12 00:05                 Class     Images  Instances          P          R      mAP50   mAP50-95:  67%|██████▋   | 8/12 00:06                 Class     Images  Instances          P          R      mAP50   mAP50-95:  75%|███████▌  | 9/12 00:06                 Class     Images  Instances          P          R      mAP50   mAP50-95:  83%|████████▎ | 10/12 00:07                 Class     Images  Instances          P          R      mAP50   mAP50-95:  92%|█████████▏| 11/12 00:07                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 12/12 00:07                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 12/12 00:07
+[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test...:   0%|          | 0/190 00:00Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\shm.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolver64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusparse64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusparse64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusparse64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolver64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolver64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolverMg64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 38, in <module>
+    from models.common import DetectMultiBackend
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\models\common.py", line 20, in <module>
+    import pandas as pd
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\__init__.py", line 22, in <module>
+    from pandas.compat import is_numpy_dev as _is_numpy_dev  # pyright: ignore # noqa:F401
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\compat\__init__.py", line 25, in <module>
+    from pandas.compat.numpy import (
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\compat\numpy\__init__.py", line 4, in <module>
+    from pandas.util.version import Version
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\util\__init__.py", line 2, in <module>
+    from pandas.util._decorators import (  # noqa:F401
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\util\_decorators.py", line 14, in <module>
+    from pandas._libs.properties import cache_readonly
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\_libs\__init__.py", line 13, in <module>
+    from pandas._libs.interval import Interval
+  File "pandas\_libs\interval.pyx", line 1, in init pandas._libs.interval
+  File "pandas\_libs\hashtable.pyx", line 1, in init pandas._libs.hashtable
+  File "pandas\_libs\missing.pyx", line 1, in init pandas._libs.missing
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\pandas\_libs\tslibs\__init__.py", line 39, in <module>
+    from pandas._libs.tslibs.conversion import localize_pydatetime
+  File "pandas\_libs\tslibs\conversion.pyx", line 1, in init pandas._libs.tslibs.conversion
+  File "pandas\_libs\tslibs\offsets.pyx", line 32, in init pandas._libs.tslibs.offsets
+ImportError: DLL load failed while importing properties: The paging file is too small for this operation to complete.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\shm.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\shm.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cudnn_cnn_train64_8.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cudnn_cnn_train64_8.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cudnn_cnn_infer64_8.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\shm.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolverMg64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolverMg64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusparse64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolver64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cusolverMg64_11.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cudnn_adv_infer64_8.dll" or one of its dependencies.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 125, in _main
+    prepare(preparation_data)
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 236, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\multiprocessing\spawn.py", line 287, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\isitr\AppData\Roaming\uv\python\cpython-3.8.8-windows-x86_64-none\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\code\yolov5-v7.0\val.py", line 29, in <module>
+    import torch
+  File "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\__init__.py", line 126, in <module>
+    raise err
+OSError: [WinError 1455] The paging file is too small for this operation to complete. Error loading "C:\Users\isitr\Desktop\prj-paper-reprod\envs\p2\lib\site-packages\torch\lib\cudnn_cnn_infer64_8.dll" or one of its dependencies.
+[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 1 images, 0 backgrounds, 0 corrupt:   1%|          | 1/190 00:18[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 22 images, 0 backgrounds, 0 corrupt:  12%|█▏        | 22/190 00:18[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 43 images, 0 backgrounds, 0 corrupt:  23%|██▎       | 43/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 63 images, 0 backgrounds, 0 corrupt:  33%|███▎      | 63/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 83 images, 0 backgrounds, 0 corrupt:  44%|████▎     | 83/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 102 images, 0 backgrounds, 0 corrupt:  54%|█████▎    | 102/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 122 images, 0 backgrounds, 0 corrupt:  64%|██████▍   | 122/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 141 images, 0 backgrounds, 0 corrupt:  74%|███████▍  | 141/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 159 images, 0 backgrounds, 0 corrupt:  84%|████████▎ | 159/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 176 images, 0 backgrounds, 0 corrupt:  93%|█████████▎| 176/190 00:19[34m[1mtest: [0mScanning C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test... 190 images, 0 backgrounds, 0 corrupt: 100%|██████████| 190/190 00:19
+[34m[1mtest: [0mNew cache created: C:\Users\isitr\Desktop\prj-paper-reprod\datasets\eldds_yolo\test.cache
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:   0%|          | 0/12 00:00                 Class     Images  Instances          P          R      mAP50   mAP50-95:   8%|▊         | 1/12 00:01                 Class     Images  Instances          P          R      mAP50   mAP50-95:  17%|█▋        | 2/12 00:02                 Class     Images  Instances          P          R      mAP50   mAP50-95:  25%|██▌       | 3/12 00:03                 Class     Images  Instances          P          R      mAP50   mAP50-95:  33%|███▎      | 4/12 00:03                 Class     Images  Instances          P          R      mAP50   mAP50-95:  42%|████▏     | 5/12 00:04                 Class     Images  Instances          P          R      mAP50   mAP50-95:  50%|█████     | 6/12 00:04                 Class     Images  Instances          P          R      mAP50   mAP50-95:  58%|█████▊    | 7/12 00:04                 Class     Images  Instances          P          R      mAP50   mAP50-95:  67%|██████▋   | 8/12 00:05                 Class     Images  Instances          P          R      mAP50   mAP50-95:  75%|███████▌  | 9/12 00:05                 Class     Images  Instances          P          R      mAP50   mAP50-95:  83%|████████▎ | 10/12 00:05                 Class     Images  Instances          P          R      mAP50   mAP50-95:  92%|█████████▏| 11/12 00:06                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 12/12 00:06                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 12/12 00:06
                    all        190       2530      0.748      0.707      0.754      0.516
               Examined        190        190      0.998          1      0.995      0.988
     ShortCircuitString        190         50       0.81       0.86      0.943      0.703
@@ -12,5 +494,5 @@ ShortCircuitCell-LowPowerCell        190        134      0.818      0.896       
                  Crack        190         84      0.772      0.646      0.759      0.348
             MicroCrack        190       1161      0.444      0.453      0.368      0.129
             OtherError        190        911      0.649      0.389      0.519       0.17
-Speed: 0.7ms pre-process, 9.4ms inference, 3.1ms NMS per image at shape (16, 3, 640, 640)
-Results saved to [1mC:\Users\Lenovo\prj-paper-reprod\results\p2\eval\v5s_notta[0m
+Speed: 0.6ms pre-process, 7.2ms inference, 2.7ms NMS per image at shape (16, 3, 640, 640)
+Results saved to [1mC:\Users\isitr\Desktop\prj-paper-reprod\results\p2\eval\v5s_notta[0m

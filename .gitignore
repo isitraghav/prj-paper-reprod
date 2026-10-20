@@ -32,6 +32,8 @@ weights/*
 
 # final trained models: tracked with Git LFS (see .gitattributes, models/README.md)
 !models/**/*.pt
+# intermediate / ablation weights in results (also LFS via .gitattributes)
+!results/**/*.pt
 
 # training outputs (keep summaries, sanity images, and the text/plot outputs of final P2/P3 runs)
 results/*
