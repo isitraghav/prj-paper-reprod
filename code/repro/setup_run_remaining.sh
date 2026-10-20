@@ -119,7 +119,7 @@ if [ ! -f "$PRJ/datasets/pv_multi_defect_yolo/data.yaml" ]; then
     --src "$PRJ/datasets/raw/PV-Multi-Defect" \
     --dst "$PRJ/datasets/pv_multi_defect_yolo" \
     --splits "$PRJ/datasets/splits/pv_multi_defect" \
-    --seed 0 --val-frac 0.2
+    --seed 0 --n-val 222
   say "  pv_multi_defect_yolo prepared"
 else
   say "  datasets/pv_multi_defect_yolo already prepared; skipping"
