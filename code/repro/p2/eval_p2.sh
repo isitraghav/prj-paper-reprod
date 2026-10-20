@@ -5,7 +5,10 @@
 # Primary TTA = 640 px (paper's stated size). Extra 'tta832' = TTA at 832 px (ultralytics' TTA guide uses ~1.3x the
 # train size); reported separately as a sensitivity check, never as the reproduction number.
 #
-# usage: bash code/repro/p2/eval_p2.sh [v5s] [v5_improved] [v8s]     (from the repo root; default: all)
+# v5_gam / v5_asff: ablation runs trained with run_p2.sh; evaluated without --diou-nms.
+# v5s_diou: no separate training — re-evals existing v5s weights with --diou-nms (paper "DIoU_only" row).
+#
+# usage: bash code/repro/p2/eval_p2.sh [v5s] [v5_improved] [v5_gam] [v5_asff] [v5s_diou] [v8s]  (default: all trained)
 set -euo pipefail
 PRJ="$(cd "$(dirname "$0")/../../.." && (pwd -W 2>/dev/null || pwd))"
 PY="$PRJ/envs/p2/Scripts/python.exe"; [ -x "$PY" ] || PY="$PRJ/envs/p2/bin/python"
@@ -13,16 +16,25 @@ DATA="$PRJ/datasets/eldds_yolo/data.yaml"
 OUT="$PRJ/results/p2/eval"
 export PYTHONIOENCODING=utf-8 PYTHONDONTWRITEBYTECODE=1
 mkdir -p "$OUT"
-RUNS=("$@"); [ ${#RUNS[@]} -eq 0 ] && RUNS=(v5s v5_improved v8s)
+RUNS=("$@"); [ ${#RUNS[@]} -eq 0 ] && RUNS=(v5s v5_improved v5_gam v5_asff v5s_diou v8s)
 
 for RUN in "${RUNS[@]}"; do
-  W="$PRJ/results/p2/p2_$RUN/weights/best.pt"
-  [ -f "$W" ] || { echo "missing $W"; continue; }
+  # v5s_diou reuses the v5s weights — no separate training run
+  if [ "$RUN" = v5s_diou ]; then
+    W="$PRJ/results/p2/p2_v5s/weights/best.pt"
+  else
+    W="$PRJ/results/p2/p2_$RUN/weights/best.pt"
+  fi
+  [ -f "$W" ] || { echo "missing $W (skipping $RUN)"; continue; }
+
   for TTA in notta tta tta832; do
     NAME="${RUN}_$TTA"
     case "$RUN" in
-      v5s|v5_improved)
-        EXTRA=(); [ $TTA != notta ] && EXTRA+=(--augment); [ $RUN = v5_improved ] && EXTRA+=(--diou-nms)
+      v5s|v5_improved|v5_gam|v5_asff|v5s_diou)
+        EXTRA=()
+        [ $TTA != notta ] && EXTRA+=(--augment)
+        # DIoU-NMS: only for v5_improved and v5s_diou
+        { [ "$RUN" = v5_improved ] || [ "$RUN" = v5s_diou ]; } && EXTRA+=(--diou-nms)
         IMG=640; [ $TTA = tta832 ] && IMG=832
         (cd "$PRJ/code/yolov5-v7.0" && "$PY" val.py --weights "$W" --data "$DATA" --img $IMG --task test \
           --batch-size 16 --workers 2 --verbose "${EXTRA[@]}" --project "$OUT" --name "$NAME" --exist-ok) \

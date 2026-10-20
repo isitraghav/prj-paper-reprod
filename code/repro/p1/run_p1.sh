@@ -5,12 +5,13 @@
 # fits: GBH 4, YOLOv5s 8. With nbs=64 accumulation every optimizer step sees 64 images, as the paper's 16 x 4 did,
 # with identical weight-decay scaling. Differences: BN batch statistics, and warm-up (max(3 epochs, 1000 iters):
 # ~18 epochs at batch 16 vs ~4.5 (GBH) / ~9 (YOLOv5s) epochs here).
+# YOLOv5-2: Conv backbone + 4-head; same memory footprint as GBH so defaults to BATCH_YOLOV52=4 (6 GB GPU).
 # workers=2: Windows commit limit (see run_p2.sh).
 # Other GPUs: override with env vars, always a divisor of 64 that fits (check with code/repro/mem_probe.py), e.g.
-#   RTX 4070 laptop 8 GB:  BATCH_YOLOV5S=16 BATCH_GBH=8 bash code/repro/p1/run_p1.sh full yolov5s gbh
-#   (YOLOv5s 16 = paper exactly; GBH needs ~10.4 GB for 16). WORKERS=4 if RAM >= 16 GB.
+#   RTX 4070 laptop 8 GB:  BATCH_YOLOV5S=16 BATCH_GBH=8 BATCH_YOLOV52=8 bash code/repro/p1/run_p1.sh full yolov5s gbh yolov5_2
+#   (YOLOv5s 16 = paper exactly; GBH/YOLOv5-2 need ~10+ GB for 16). WORKERS=4 if RAM >= 16 GB.
 #
-# usage: bash code/repro/p1/run_p1.sh <smoke|full> <yolov5s|gbh>...   (from the repo root)
+# usage: bash code/repro/p1/run_p1.sh <smoke|full> <yolov5s|gbh|yolov5_2>...   (from the repo root)
 set -euo pipefail
 PRJ="$(cd "$(dirname "$0")/../../.." && (pwd -W 2>/dev/null || pwd))"  # C:/... on Windows
 MODE="$1"; shift
@@ -21,8 +22,9 @@ mkdir -p "$OUT"
 
 for RUN in "$@"; do
   case "$RUN" in
-    yolov5s) CFG=yolov5s.yaml; BATCH=${BATCH_YOLOV5S:-8};;
-    gbh) CFG=gbh_released.yaml; BATCH=${BATCH_GBH:-4};;
+    yolov5s)  CFG=yolov5s.yaml;       BATCH=${BATCH_YOLOV5S:-8};;
+    gbh)      CFG=gbh_released.yaml;  BATCH=${BATCH_GBH:-4};;
+    yolov5_2) CFG=yolov5_2.yaml;      BATCH=${BATCH_YOLOV52:-4};;
     *) echo "unknown run $RUN"; exit 2;;
   esac
   NAME="p1_$RUN"
