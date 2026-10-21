@@ -45,6 +45,9 @@ results/*
 !results/p1/
 !results/p2/
 !results/p3/
+!results/cross/
+results/cross/preds*/*.csv
+results/cross/tiles*.csv
 results/p2/yolov8n.pt
 results/p3/cnn_smoke*
 results/p3/*.stdout

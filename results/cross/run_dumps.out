@@ -1,0 +1,15 @@
+skip p1_yolov5s pv (done)
+[2026-10-22 03:54:34] p1_yolov5s on eldds exit 0
+[2026-10-22 03:55:04] p1_yolov5s on elpv exit 0
+[2026-10-22 03:55:20] p1_gbh on pv exit 0
+[2026-10-22 03:55:36] p1_gbh on eldds exit 0
+[2026-10-22 03:56:02] p1_gbh on elpv exit 0
+[2026-10-22 03:58:16] p2_v5s on pv exit 0
+[2026-10-22 03:58:33] p2_v5s on eldds exit 0
+[2026-10-22 03:59:00] p2_v5s on elpv exit 0
+[2026-10-22 04:00:04] p2_improved on pv exit 0
+[2026-10-22 04:00:45] p2_improved on eldds exit 0
+[2026-10-22 04:01:47] p2_improved on elpv exit 0
+[2026-10-22 04:02:05] p2_v8s on pv exit 0
+[2026-10-22 04:02:19] p2_v8s on eldds exit 0
+[2026-10-22 04:02:41] p2_v8s on elpv exit 0

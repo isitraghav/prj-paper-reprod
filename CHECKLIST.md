@@ -155,3 +155,12 @@ No code released; re-implemented from the paper (`code/repro/p3/`). Details and 
 | CNN seeds 1, 2 (variance check) | [x] | acc_w 85.87 / 84.98; mean ± sd (3 seeds) **85.78 ± 0.76**, F1_w 83.38 ± 0.77 → gap to paper is systematic |
 | SVM bounded check (unstated details, training-CV selection) | [x] | KAZE thr 0.0001, no PCA, C 1 → acc_w **79.65 %**, F1_w 77.09 %, AUC_w 84.08 % |
 | P3 summary vs paper | [x] | `init.md` § P3 results; CNN > SVM reproduces; SVM gap = keypoint density |
+
+## 9. Cross-dataset comparison (inference only), 2026-10-22, RTX 4050 Laptop 6 GB
+Every trained model in `models/` (P1 YOLOv5s + GBH, P2 YOLOv5s + Improved + YOLOv8s, P3 CNN seed 0), unchanged, on all
+three evaluation splits. Report: **`COMPARISON.md`**; scripts `code/repro/cross/`; numbers `results/cross/metrics.json`.
+- [x] Detector inference dumps, 5 models × 3 datasets (`run_dumps.sh`), each at its own paper's input size / NMS
+- [x] Shared tasks: class-agnostic detection (PV, ELDDS); defective-vs-functional tiles (PV 4×4, ELDDS 6×6, ELPV cells)
+- [x] One evaluator (numpy re-implementation of yolov5 v7.0 metrics), checked against the official home numbers (≤ 0.009 mAP@.5); CNN tile path reproduces P3 home exactly
+- [x] Bootstrap 95 % CIs; sensitivity S1 (foreign input size) and S2 (ELDDS 12×12 tiles)
+- [x] Figures + qualitative examples in `results/cross/figs/`

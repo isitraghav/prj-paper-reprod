@@ -1,0 +1,6 @@
+{
+ "n_tiles": 11048,
+ "ms_per_tile_batch16": 11.746321744801426,
+ "tf": "2.10.1",
+ "gpu": "[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]"
+}

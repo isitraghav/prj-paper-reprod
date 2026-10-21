@@ -1,0 +1,21 @@
+{
+ "weights": "C:/Users/isitr/Desktop/prj-paper-reprod/models/p2/yolov5s_gam_asff.pt",
+ "list": "C:/Users/isitr/Desktop/prj-paper-reprod/results/cross/lists/elpv.txt",
+ "n_images": 656,
+ "img": 640,
+ "conf": 0.001,
+ "iou": 0.6,
+ "diou_nms": true,
+ "names": [
+  "Examined",
+  "ShortCircuitString",
+  "ShortCircuitCell-LowPowerCell",
+  "Crack",
+  "MicroCrack",
+  "OtherError"
+ ],
+ "ms_inference": 22.844445414659454,
+ "ms_nms": 50.89193727911972,
+ "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+ "torch": "1.11.0+cu113"
+}
