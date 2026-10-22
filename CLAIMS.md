@@ -22,7 +22,7 @@ the PDFs. Our numbers are from `models/README.md`, `CHECKLIST.md` §6–8, `init
 
 | Paper | Headline claim | Verdict |
 |---|---|---|
-| P1 | GBH-YOLOv5 reaches 97.8 mAP@.5, +19.7 over YOLOv5s | ❌ 82.1, **4.4 below** our YOLOv5s (86.5). Significant in a paired test: −0.033 [−0.061, −0.007] |
+| P1 | GBH-YOLOv5 reaches 97.8 mAP@.5, +19.7 over YOLOv5s | ❌ 82.1, **4.4 below** our YOLOv5s (86.5). Paired test −0.033 [−0.061, −0.007] (not significant after Holm correction over 35 tests; the class-agnostic −0.055 is). The claimed +0.197 is far outside the CI |
 | P2 | Improved YOLOv5 reaches 76.3 mAP@.5, +2.5 over YOLOv5s | ❌ 0.757, +0.003 over YOLOv5s (not significant: [−0.008, +0.015]). The models' absolute levels do reproduce (within ±0.016) |
 | P3 | CNN 88.42 % accuracy beats SVM 82.44 % | ◐ The CNN > SVM ranking and the ≈ 6-point gap reproduce. Both are lower: CNN 86.5 %, SVM 79.7 % (69.7 % with the paper's stated defaults) |
 

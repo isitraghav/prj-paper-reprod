@@ -240,15 +240,18 @@ difference. Overlapping per-model CIs are not a test. Bold = CI excludes 0. All 
 P2 class-aware uses P2's 6 classes, as in its paper. Over the 5 defect classes only, YOLOv8s − YOLOv5s = **+0.018**
 [+0.006, +0.033] and YOLOv8s − Improved = **+0.015** [+0.000, +0.031].
 
-- **GBH-YOLOv5 is significantly worse than its own baseline at home**: −0.033 class-aware, −0.055 class-agnostic.
+- **GBH-YOLOv5 is worse than its own baseline at home**: −0.033 class-aware, −0.055 class-agnostic (uncorrected CIs
+  exclude 0).
   It is slightly better across datasets (+0.017 mAP@.5 and +0.031 tile AUC on ELDDS), but at a level of
   0.05 mAP@.5 and 0.61 AUC.
 - **P2-Improved (GAM + ASFF + DIoU-NMS) is not distinguishable from YOLOv5s at home** on any metric. Its one
   significant cross gain (+0.067 tile AUC on ELPV) moves it from 0.457 to 0.524; both CIs include 0.5.
-- **YOLOv8s is the only P2 model with a significant home gain**: +0.015 class-aware over YOLOv5s; vs Improved the CI
-  touches 0. Class-agnostic, the three are tied.
+- **YOLOv8s is the only P2 model whose home gain has a CI excluding 0**: +0.015 class-aware over YOLOv5s; vs Improved
+  the CI touches 0. Class-agnostic, the three are tied.
 - Across datasets the significant differences are all ≤ 0.07 and leave every model near chance. Architecture
   doesn't decide transfer.
+- **Multiplicity.** After a Holm correction over all 35 paired tests (`results/cross/tables_holm.md`), only two cross-dataset differences stay significant (GBH − YOLOv5s on ELDDS: +0.017 mAP@.5, +0.031 tile AUC). Within the 15 home-dataset tests, only GBH's class-agnostic deficit (−0.055, Holm p 0.025) stays significant; its class-aware −0.033 (Holm p 0.19) and YOLOv8s's +0.015 (Holm p 0.22) do not. None of this rescues a claim: the papers' gains (+0.197, +0.023) lie far outside
+  every CI.
 
 ## 4. Task B: defective vs functional, full 3 × 3
 
@@ -397,8 +400,8 @@ codebase's model summary (thop at 640, scaled by (960/640)² for P1).
   the box-centre labelling rule are free choices; a large box (e.g. ShortCircuitString) marks only the tile holding
   its centre.
 - Detector thresholds are the standard deployment defaults (0.25), not tuned; AUC is threshold-free.
-- The paired tests (§3.2) are 35 comparisons without a multiplicity correction. A difference whose CI only just
-  excludes 0 (e.g. Improved − YOLOv5s −0.004 class-agnostic on PV) should not be read as a finding on its own.
+- The paired tests (§3.2) are 35 comparisons. The CIs in §3.2 are uncorrected; the Holm-corrected p values are in
+  `results/cross/tables_holm.md` (p from the bootstrap SE, a normal approximation).
 - Image-bootstrap CIs cover test-set sampling only. They don't cover training randomness: one trained model per
   architecture, so paired differences of ≈ 0.01–0.02 could be within seed variance.
 - One trained model per architecture (CNN seed 0). For the CNN, seed variance at home is ±0.76 acc (`init.md` P3).

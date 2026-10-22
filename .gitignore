@@ -65,4 +65,6 @@ nohup.out
 # byte-identical copy of models/p2/yolov5s.pt, kept only because eval_p2.sh reads it from here
 results/p2/p2_v5s/weights/
 !results/replication_r1/
+!results/fewshot/
+results/fewshot/*/weights/
 results/replication_r1/preds/*.csv

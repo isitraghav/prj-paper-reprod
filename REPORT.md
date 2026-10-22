@@ -203,7 +203,7 @@ P1 and P2: mAP@.5 from each codebase's own validator. P3: confidence-weighted ac
 | P1 YOLOv5-1 − YOLOv5s | +16.1 | −2.0 | −1.3 | — |
 | P1 YOLOv5-2 − YOLOv5-1 | +2.9 | −0.9 | — | — |
 | P1 GBH − YOLOv5-2 | +0.7 | −0.4 | — | — |
-| **P1 GBH − YOLOv5s** | **+19.7** | **−3.3** | **−4.4** | **−0.033 [−0.061, −0.007]** |
+| **P1 GBH − YOLOv5s** | **+19.7** | **−3.3** | **−4.4** | **−0.033 [−0.061, −0.007]** (Holm-corrected: n.s.; class-agnostic −0.055, Holm p 0.025) |
 | P1 scratch AP, GBH − YOLOv5s (the tiny-target class) | +28.1 | −1.4 | −2.1 | — |
 | **P2 Improved − YOLOv5s** | **+0.023** | — | **+0.003** | +0.003 [−0.008, +0.015] |
 | P2 YOLOv8s − YOLOv5s | +0.026 | — | +0.010 | **+0.015 [+0.003, +0.028]** |
@@ -213,8 +213,10 @@ P1 and P2: mAP@.5 from each codebase's own validator. P3: confidence-weighted ac
   modification costs 0.4–2.0 points instead of adding 0.7–16.1. The tiny-target head does not help the tiny class.
   P1's own tables are inconsistent: its per-class APs average to 81.8 and 97.3 for YOLOv5s and YOLOv5-1, not the
   78.1 and 94.2 it reports, which inflates the gains (`CLAIMS.md` P1).
-- **P2's GAM + ASFF + DIoU-NMS is indistinguishable from plain YOLOv5s.** Only YOLOv8s has a significant home gain,
-  and it is small.
+- **P2's GAM + ASFF + DIoU-NMS is indistinguishable from plain YOLOv5s.** Only YOLOv8s has a home gain whose CI
+  excludes 0, and it is small.
+- **Multiplicity.** After a Holm correction over all 35 paired tests (`results/cross/tables_holm.md`), only two cross-dataset differences stay significant (GBH − YOLOv5s on ELDDS: +0.017 mAP@.5, +0.031 tile AUC). Within the 15 home-dataset tests, only GBH's class-agnostic deficit (−0.055, Holm p 0.025) stays significant; its class-aware −0.033 (Holm p 0.19) and YOLOv8s's +0.015 (Holm p 0.22) do not. Either way the papers' claimed gains lie far outside every CI, and the sign of
+  GBH − YOLOv5s is negative in both independent runs.
 - **P3's ranking (CNN > SVM, by ≈ 6 points) holds** in both runs.
 
 ### 6.3 RQ3: Cross-dataset detection
@@ -364,7 +366,8 @@ YOLOv8s draws column-height boxes, its ShortCircuitString shape.
    within 2 points, and P1's YOLOv5s scores 87.8 against 78.1 reported. P1's proposed GBH-YOLOv5 reaches at most
    84.5 against the claimed 97.8, in two independent runs on different hardware, image sizes and splits.
 2. **Claimed improvements (RQ2).** They do not hold:
-   - P1's ablation chain reverses sign at every step, and GBH is significantly *below* its own baseline.
+   - P1's ablation chain reverses sign at every step, and GBH lands *below* its own baseline in both runs (−3.3 and
+     −4.4; class-agnostic deficit significant after Holm correction).
    - P2's GAM + ASFF + DIoU-NMS gains +0.003 (n.s.), not +0.023.
    - Only P3's CNN > SVM ranking, which is not an architectural novelty, is confirmed.
 3. **Generalisation (RQ3).** None of the 11 models tested across datasets (7 from R2, 4 from R1) works on another
