@@ -26,6 +26,7 @@ figures: **`COMPARISON.md`**.
 | File | What it is |
 |---|---|
 | `COMPARISON.md` | The cross-dataset comparison: protocol, results, figures, discussion and limitations for the review |
+| `CLAIMS.md` | Every checkable claim of the three papers, marked confirmed / partly / not confirmed / not tested, plus internal inconsistencies |
 | `init.md` | Runbook: settings taken from each paper, environment setup, deviations from the papers (§11, P3-…), progress log (§13) |
 | `CHECKLIST.md` | Status tracker per paper (environments, data, training, evaluation), the comparison (§9) and what is left (§10) |
 | `models/README.md` | The final trained models (Git LFS), their home scores against the papers, and how to load them |

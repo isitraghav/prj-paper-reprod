@@ -94,7 +94,7 @@ padding: the val scripts' loader (`rect`, pad 0.5 stride) feeds these square ima
 
 ## 2. Home results: paper claim vs our reproduction (context)
 
-From `CHECKLIST.md` §6–8 and `init.md` (each paper's own metric and split).
+From `CHECKLIST.md` §6–8 and `init.md` (each paper's own metric and split). The full claim-by-claim check, including the ablations and the papers' internal inconsistencies, is in `CLAIMS.md`.
 
 | Paper | Model | Paper reports | Our reproduction | Note |
 |---|---|---|---|---|
