@@ -11,6 +11,7 @@ On Linux use `envs/<env>/bin/python`. Each script's docstring or header gives it
 | `voc2yolo_pv.py` | PV-Multi-Defect VOC → YOLO format, using the frozen split (P1) |
 | `draw_boxes.py` | Draws random labelled images into `results/sanity/` for an eyeball check |
 | `mem_probe.py` | Finds the largest batch that fits in VRAM for a model config |
+| `check_datasets.py` | Our three datasets vs each paper's stated counts → `results/dataset_check.md` |
 | `summarize.py` | Collects the P2 eval logs into `results/summary.{csv,md}` |
 
 ## Run queues
@@ -23,7 +24,7 @@ On Linux use `envs/<env>/bin/python`. Each script's docstring or header gives it
 ## Per paper
 | Folder | Contents |
 |---|---|
-| `p1/` | GBH fork patch, model yamls (baseline, GBH released/paper, YOLOv5-1/-2 ablations), `hyp.gbh.yaml`, `run_p1.sh`, `model_check.py` (layer/parameter counts vs the paper) |
+| `p1/` | GBH fork patch, model yamls (baseline, GBH released/paper, YOLOv5-1/-2 ablations), `hyp.gbh.yaml`, `run_p1.sh`, `model_check.py` (layer/parameter counts vs the paper), `leakage_check.py` (duplicate images, train/val copies, re-scored val) |
 | `p2/` | yolov5 v7.0 patch (GAM, ASFF, DIoU-NMS), model yamls, `run_p2.sh`, `eval_p2.sh`, `v8_val.py` (YOLOv8 TTA), `gflops.py`, `make_yamls.py` |
 | `p3/` | ELPV split, VGG-19 CNN training and evaluation, KAZE/VGG + VLAD + SVM training, the SVM bounded check |
 | `env/` | Locked uv projects: `p1` (torch 1.8.1), `p2` (torch 1.11.0, ultralytics 8.0.99), `p3cnn` (TF 2.10.1), `p3svm` (OpenCV 3.4.18, sklearn 0.22) |

@@ -31,7 +31,7 @@ the PDFs. Our numbers are from `models/README.md`, `CHECKLIST.md` §6–8, `init
 | # | Paper claims | Ours | Verdict |
 |---|---|---|---|
 | 1.1 | Dataset: 1108 images, 600 × 600, 886 train / 222 val | 1108 images (2 without labels are defect-free backgrounds), 886 / 222 | ✅ |
-| 1.2 | 4235 defect boxes; hot_spot 49.09 %, scratch 36.62 %, black_border 6.02 %, no_electricity 4.28 %, broken 3.99 % (Fig. 5) | Released annotations: **3981** boxes; 52.22 / 34.34 / 6.43 / 4.55 / **2.46 %** | ❌ The released data has 254 fewer boxes (−6 %) and 42 % fewer `broken` boxes (98 vs ≈ 169) |
+| 1.2 | 4235 defect boxes; hot_spot 49.09 %, scratch 36.62 %, black_border 6.02 %, no_electricity 4.28 %, broken 3.99 % (Fig. 5) | Released annotations: **3981** boxes; 52.22 / 34.34 / 6.43 / 4.55 / **2.46 %** | ❌ hot_spot (2079), black_border (256) and no_electricity (181) match the paper's counts exactly. All 254 missing boxes are **scratch (−184) and broken (−71)**: the released annotations lack about 12 % of the scratches and 42 % of the broken areas the paper had |
 | 1.3 | GBH-YOLOv5 mAP@.5 97.8, P 96.4, R 93.3 (Table 4) | 82.1, P 81.1, R 81.2 (authors' code and released config, 500 epochs at 960 px) | ❌ |
 | 1.4 | YOLOv5s baseline mAP@.5 78.1 (Table 4) | **86.5** | ❌ Our baseline is 8.4 higher |
 | 1.5 | Adding BottleneckCSP (YOLOv5-1) gives +16.1 mAP, to 94.2 (Table 4) | YOLOv5-1, layer/param count identical to the paper: 85.2, i.e. **−1.3** vs our YOLOv5s | ❌ |
@@ -60,7 +60,8 @@ Test split, 190 images, 640 px. Our numbers come from each codebase's own valida
 
 | # | Paper claims | Ours | Verdict |
 |---|---|---|---|
-| 2.1 | Dataset: 1187 train / 190 test, 6 classes (Fig. 2) | 1186 / 190 (2 images whose only labels are classes outside the paper's six were excluded), 6 classes | ✅ |
+| 2.1 | Dataset: 1187 train / 190 test, 6 classes, ≈ 21,000 defect boxes | Roboflow v1: 1188 / 190, 6 classes, 21,122 defect boxes (+23 under extra Roboflow ids). Used 1186 / 190 (2 images whose only labels are classes outside the paper's six were excluded) | ✅ |
+| 2.1b | Fig. 2 class distribution per split | Totals match for ShortCircuitString (470 = 470), Crack (531 = 531) and MicroCrack (11,033 vs 11,041). They differ for ShortCircuitCell (1140 vs 701) and OtherError (7948 vs 2241 labelled "DarkSpot"). Fig. 2's split is **1240 / 138**, which contradicts the paper's own 1187 / 190 | ◐ Same data. Fig. 2 was drawn from a different split or class grouping than the text describes |
 | 2.2 | YOLOv5s mAP@.5 0.739, mAP@.5:.95 0.502 | 0.754, 0.516 | ✅ (+0.015) |
 | 2.3 | YOLOv8s mAP@.5 0.765 | 0.764 | ✅ |
 | 2.4 | Improved (GAM + ASFF + DIoU-NMS) 0.763, i.e. **+2.5 points over YOLOv5s** (abstract, conclusion) | 0.757, **+0.003**; paired bootstrap [−0.008, +0.015] | ◐ The absolute level is close (−0.006). ❌ The improvement does not reproduce |
@@ -86,7 +87,7 @@ Test split, 656 cells. Accuracy and F1 are weighted by label confidence (Table 2
 | # | Paper claims | Ours | Verdict |
 |---|---|---|---|
 | 3.1 | Split: 1968 train / 656 test cells, per type and label (Table 3) | Identical | ✅ |
-| 3.2 | CNN accuracy 88.42 %, F1 88.39 % | 86.49 / 84.20 (seed 0). Three seeds: 85.78 ± 0.76 / 83.38 ± 0.77 | ◐ Accuracy is 1.9–2.6 below the paper. F1 is 4–5 below, consistently across seeds |
+| 3.2 | CNN accuracy 88.42 %, F1 88.39 % | 86.49 / 84.20 (seed 0). Three seeds: 85.78 ± 0.76 / 83.38 ± 0.77 | ◐ Accuracy is 1.9–2.6 below the paper. With macro F1 we are 4–5 below; with support-weighted F1 (86.00 / 85.25 / 84.56) only 2.4–3.8 below. The paper's F1 ≈ accuracy (88.39 vs 88.42, SVM 82.52 vs 82.44) fits a support-weighted F1, which the paper doesn't define |
 | 3.3 | SVM (KAZE/VGG + VLAD + linear SVM) accuracy 82.44 %, F1 82.52 %, AUC 88.51 % | Paper's stated defaults: 69.70 / 66.32 / 74.88. With the unstated details picked by training-CV: 79.65 / 77.09 / 84.08 | ◐ Only after filling in details the paper doesn't state. The gap comes from keypoint density |
 | 3.4 | CNN is more accurate than the SVM | 86.5 vs 79.7 (or 69.7) | ✅ |
 | 3.5 | The two differ "in total by only about 6 %" | 6.8 points (better-specified SVM) | ✅ (16.8 with the paper's defaults) |
@@ -95,6 +96,37 @@ Test split, 656 cells. Accuracy and F1 are weighted by label confidence (Table 2
 | 3.8 | Confidence weighting helps; keypoints beat dense grids; masking rarely helps (§4.2–4.3) | Only the selected configuration was built | — Not tested |
 | 3.9 | Runtime: SVM training ≈ 30 min, CNN ≈ 5 h; CNN inference ≈ 20 s on GPU vs SVM ≈ 8 min | CNN 100 + 100 epochs ≈ 3.4 h on an RTX 3050 Laptop | — Not comparable (different hardware) |
 | 3.10 | Limitations stated: each cell is judged on its own; use outside a manufacturing setting has challenges | CNN on P1's tiles: AUC 0.50 (chance); on ELDDS tiles: 0.59 | ✅ Consistent. P3 is the one paper whose stated caution matches our cross-dataset result |
+
+## Are our datasets identical to the papers'?
+
+Script: `code/repro/check_datasets.py`. Output: `results/dataset_check.md`.
+
+| Paper | Identical? | Details |
+|---|---|---|
+| P3 ELPV | ✅ Same data, same split counts | 2624 cells. Every train/test × mono/poly × label count equals Table 3 (16 / 16 cells). The paper's split *membership* was never published; ours is a stratified re-split with the same counts |
+| P2 ELDDS1400C5 | ✅ Same data (Roboflow v1, uploaded by the P2 authors) | 1188 / 190 vs 1187 / 190 in the text. The box totals per class match Fig. 2 for 3 of the 6 classes. Fig. 2's own 1240 / 138 split contradicts the text, so we follow the text and Roboflow's test split. Our model scores match the paper within 0.016, which supports that the test set is the same |
+| P1 PV-Multi-Defect | ❌ Not identical, and cannot be made identical from public files | Same 1108 images and split sizes, but (a) the split membership is unpublished, (b) 254 scratch/broken boxes are missing from the released annotations, (c) the 307 raw photos needed for the paper's preprocessing are not released |
+
+**Also found in P1's data:**
+- 61 pairs of byte-identical images (122 of the 1108). In 60 of the 61 pairs, the two copies carry different boxes; in the pairs we inspected, these are the same defects with shifted coordinates, plus one extra hot_spot. Under random splitting, 21 of these pairs end up in both train and val.
+- Copies of train images don't inflate our val scores. The 61 val images with a near-copy in train score *lower* (YOLOv5s 0.826) than the 161 without (0.874, CI 0.82–0.92). See `code/repro/p1/leakage_check.py` and `results/p1/leakage.json`.
+
+## Is the gap caused by our code or training?
+
+**Checked and ruled out:**
+- **P1 label conversion.** Every xml size equals its image size. No boxes fall outside the image, no class names are misspelled, and the box counts equal the released xml.
+- **P3 labels and weights.** They follow Table 2 exactly; non-confident cells are labelled defective, with weights 0.33 / 0.67.
+- **Our evaluator.** It reproduces each codebase's official numbers within 0.009 mAP@.5.
+- **The training pipeline itself.** P1 YOLOv5s at the paper's exact settings (batch 16) *exceeds* the paper (86.5 vs 78.1). P1 YOLOv5-1, with an exact architecture match and batch 16, reaches 85.2. P2 YOLOv5s and YOLOv8s match within ±0.016. A broken pipeline would not hit these.
+
+**Real deviations that remain, by likely impact:**
+1. **P1 annotations.** The released set lacks 184 scratch and 71 broken boxes. Correct detections of unlabelled defects count as false positives, and training sees fewer examples. This plausibly explains part of our low scratch AP (63–65 vs 97.4). It cannot explain the ablation pattern: YOLOv5-1's 94.2 already contradicts its own Table 5. *Fix:* ask the authors for their annotation version and train/val lists.
+2. **P1 GBH architecture.** No public config gives the paper's 270 layers / 7.24 M. *Fix:* ask the authors for the exact yaml or trained weights. The Baidu link has only `yolov5s.pt`.
+3. **P2 GAM/ASFF placement is inferred** (no code). *Fix:* ask the authors for code. Without it, the +0.023 can only be checked against seed variance (item 5).
+4. **P2 TTA protocol.** The paper says "three different resolutions" but not the base size. At `--img 832`, which is the size ultralytics' TTA example uses, our numbers are 0.774 / 0.773 / 0.761 (paper 0.766 / 0.777 / 0.775). At 640 they are 0.766 / 0.758 / 0.753. We keep 640 as primary because it is the paper's stated image size. Switching after seeing results would be cherry-picking.
+5. **One seed per detector.** P2's +0.023 and P1's +19.7 are single-run differences in the papers too. *Fix:* 2 more seeds of P2 YOLOv5s and Improved (≈ 8 h on the RTX 4050) give the seed-to-seed spread to compare against.
+6. **Smaller physical batch** (P1 GBH 8 instead of 16; P2 16 instead of 32). Only BatchNorm statistics differ, since accumulation keeps 64 images per step. *Fix:* a ≥ 16 GB GPU. Expected effect: small.
+7. **P3 metric definition** (F1, see 3.2). *Fix:* report support-weighted F1 next to macro F1. Done in this file.
 
 ## What this means for the review
 

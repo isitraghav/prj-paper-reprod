@@ -1,0 +1,31 @@
+{
+ "images": 1108,
+ "duplicate_groups": 61,
+ "images_in_duplicate_groups": 122,
+ "cross_split_groups": 21,
+ "groups_with_identical_labels": 1,
+ "max_dist": 15,
+ "val": 222,
+ "val_exact_copy_in_train": 23,
+ "val_near_copy_in_train": 61,
+ "models": {
+  "p1_yolov5s": {
+   "all": 0.8557094535393283,
+   "clean": 0.873911440619571,
+   "leaky": 0.8261168039466916,
+   "clean_ci": [
+    0.8176330045960643,
+    0.9185988775453138
+   ]
+  },
+  "p1_gbh": {
+   "all": 0.8225345479672439,
+   "clean": 0.8357227338518134,
+   "leaky": 0.8239967479176464,
+   "clean_ci": [
+    0.7774901016042362,
+    0.8976544470218051
+   ]
+  }
+ }
+}

@@ -170,4 +170,6 @@ three evaluation splits. Report: **`COMPARISON.md`**; scripts `code/repro/cross/
 
 ## 10. Still to do (not needed for the comparison)
 - [ ] P1 YOLOv5-2 ablation: died at epoch 54/500 on 2026-10-20. Resume: `train.py --resume ../../results/p1/p1_yolov5_2/weights/last.pt` in `code/gbh-yolov5`, **WORKERS=0** on the RTX 4050.
+- [ ] Email the P1 authors (zfwang@ccnu.edu.cn): train/val lists, the annotation version with 4235 boxes, the exact GBH yaml (270 layers / 7.24 M) or weights. Email the P2 authors: GAM/ASFF code. (See `CLAIMS.md`, "Is the gap caused by our code or training?")
+- [ ] Seed spread: 2 more seeds of P2 YOLOv5s and Improved (≈ 8 h on the RTX 4050), to compare the paper's +0.023 against run-to-run variance.
 - [ ] P2 ablations v5_gam, v5_asff + DIoU-only eval: `bash code/repro/run_p2_after_p1.sh` (waits for yolov5_2, then runs them one after another; never in parallel with P1).
