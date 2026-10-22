@@ -1,0 +1,20 @@
+{
+ "weights": "C:/Users/isitr/Downloads/trained_weights_and_results/elec_paper/GBH-YOLOv5/runs/train/abl_yolov5s_2/weights/last.pt",
+ "list": "../../results/cross/lists/eldds.txt",
+ "n_images": 190,
+ "img": 608,
+ "conf": 0.001,
+ "iou": 0.6,
+ "diou_nms": false,
+ "names": [
+  "broken",
+  "hot_spot",
+  "black_border",
+  "scratch",
+  "no_electricity"
+ ],
+ "ms_inference": 19.812974176908796,
+ "ms_nms": 5.683683094225432,
+ "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+ "torch": "1.8.1+cu111"
+}

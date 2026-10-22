@@ -25,6 +25,7 @@ figures: **`COMPARISON.md`**.
 
 | File | What it is |
 |---|---|
+| **`REPORT.md`** | **The full report for the review: motivation, objectives, both replications, home and cross-dataset results, conclusion** |
 | `COMPARISON.md` | The cross-dataset comparison: protocol, results, figures, discussion and limitations for the review |
 | `CLAIMS.md` | Every checkable claim of the three papers, marked confirmed / partly / not confirmed / not tested, plus internal inconsistencies |
 | `init.md` | Runbook: settings taken from each paper, environment setup, deviations from the papers (§11, P3-…), progress log (§13) |
@@ -40,6 +41,7 @@ papers/            the three PDFs
 code/repro/        our code (see code/repro/README.md)
   p1/ p2/ p3/      per-paper configs, patches, training and evaluation scripts
   cross/           the cross-dataset comparison
+  replication/     re-scoring of the earlier R1 run (REPORT.md §5.1)
   env/             locked uv projects for each environment (p1, p2, p3cnn, p3svm)
   kaggle/          Kaggle tooling (tried, dropped; unused)
 code/gbh-yolov5/   P1 authors' code @51ee042           (cloned, not committed)
@@ -50,6 +52,7 @@ models/            final trained models, Git LFS
 results/
   p1/ p2/ p3/      training curves, logs and evaluation output per paper
   cross/           comparison numbers (*.json), tables (tables*.md), figures (figs/)
+  replication_r1/  the earlier RTX 3050 run (R1) re-scored with our evaluators
   sanity/          box drawings used to check the label conversion
   summary.*        P2 evaluation summary (paper vs ours)
 envs/              Python environments (built per machine, not committed)
