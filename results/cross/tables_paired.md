@@ -1,0 +1,56 @@
+### Paired bootstrap: difference A - B (same 1000 image resamples), 95 % CI, two-sided bootstrap p
+
+| A - B | metric | dataset | difference [95 % CI] | p |
+|---|---|---|---|---|
+| P1 GBH-YOLOv5 - P1 YOLOv5s | home_paper mAP@.5 | PV-Multi-Defect (P1) | **-0.033** [-0.061, -0.007] | 0.012 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | agnostic mAP@.5 | PV-Multi-Defect (P1) | **-0.055** [-0.086, -0.017] | 0.006 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | agnostic mAP@.5 | ELDDS1400C5 (P2) | **+0.017** [+0.009, +0.027] | 0.000 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | mapped mAP@.5 | PV-Multi-Defect (P1) | -0.027 [-0.072, +0.012] | 0.170 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | mapped mAP@.5 | ELDDS1400C5 (P2) | +0.002 [-0.017, +0.018] | 0.938 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | home_paper mAP@.5 | ELDDS1400C5 (P2) | +0.003 [-0.008, +0.015] | 0.550 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | home_defect mAP@.5 | ELDDS1400C5 (P2) | +0.003 [-0.010, +0.017] | 0.598 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | agnostic mAP@.5 | ELDDS1400C5 (P2) | -0.001 [-0.013, +0.011] | 0.750 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | agnostic mAP@.5 | PV-Multi-Defect (P1) | **-0.004** [-0.017, -0.001] | 0.014 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | mapped mAP@.5 | ELDDS1400C5 (P2) | +0.002 [-0.017, +0.023] | 0.770 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | mapped mAP@.5 | PV-Multi-Defect (P1) | +0.053 [-0.004, +0.091] | 0.074 |
+| P2 YOLOv8s - P2 YOLOv5s | home_paper mAP@.5 | ELDDS1400C5 (P2) | **+0.015** [+0.003, +0.028] | 0.012 |
+| P2 YOLOv8s - P2 YOLOv5s | home_defect mAP@.5 | ELDDS1400C5 (P2) | **+0.018** [+0.006, +0.033] | 0.004 |
+| P2 YOLOv8s - P2 YOLOv5s | agnostic mAP@.5 | ELDDS1400C5 (P2) | +0.014 [-0.002, +0.032] | 0.082 |
+| P2 YOLOv8s - P2 YOLOv5s | agnostic mAP@.5 | PV-Multi-Defect (P1) | +0.007 [-0.005, +0.018] | 0.256 |
+| P2 YOLOv8s - P2 YOLOv5s | mapped mAP@.5 | ELDDS1400C5 (P2) | +0.010 [-0.008, +0.035] | 0.252 |
+| P2 YOLOv8s - P2 YOLOv5s | mapped mAP@.5 | PV-Multi-Defect (P1) | -0.013 [-0.104, +0.023] | 0.386 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | home_paper mAP@.5 | ELDDS1400C5 (P2) | +0.012 [-0.000, +0.026] | 0.060 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | home_defect mAP@.5 | ELDDS1400C5 (P2) | **+0.015** [+0.000, +0.031] | 0.050 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | agnostic mAP@.5 | ELDDS1400C5 (P2) | +0.015 [-0.000, +0.034] | 0.058 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | agnostic mAP@.5 | PV-Multi-Defect (P1) | **+0.011** [+0.004, +0.027] | 0.000 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | mapped mAP@.5 | ELDDS1400C5 (P2) | +0.008 [-0.010, +0.030] | 0.352 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | mapped mAP@.5 | PV-Multi-Defect (P1) | **-0.066** [-0.152, -0.017] | 0.004 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | tile AUC | PV-Multi-Defect (P1) | -0.000 [-0.009, +0.008] | 0.922 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | tile AUC | ELDDS1400C5 (P2) | **+0.031** [+0.011, +0.049] | 0.000 |
+| P1 GBH-YOLOv5 - P1 YOLOv5s | tile AUC | ELPV (P3) | +0.006 [-0.034, +0.049] | 0.748 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | tile AUC | PV-Multi-Defect (P1) | +0.020 [-0.002, +0.042] | 0.070 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | tile AUC | ELDDS1400C5 (P2) | +0.002 [-0.003, +0.007] | 0.404 |
+| P2 YOLOv5s+GAM+ASFF+DIoU - P2 YOLOv5s | tile AUC | ELPV (P3) | **+0.067** [+0.022, +0.111] | 0.002 |
+| P2 YOLOv8s - P2 YOLOv5s | tile AUC | PV-Multi-Defect (P1) | +0.006 [-0.017, +0.028] | 0.634 |
+| P2 YOLOv8s - P2 YOLOv5s | tile AUC | ELDDS1400C5 (P2) | -0.001 [-0.013, +0.009] | 0.896 |
+| P2 YOLOv8s - P2 YOLOv5s | tile AUC | ELPV (P3) | +0.038 [-0.004, +0.075] | 0.084 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | tile AUC | PV-Multi-Defect (P1) | -0.015 [-0.040, +0.011] | 0.278 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | tile AUC | ELDDS1400C5 (P2) | -0.003 [-0.013, +0.007] | 0.600 |
+| P2 YOLOv8s - P2 YOLOv5s+GAM+ASFF+DIoU | tile AUC | ELPV (P3) | **-0.030** [-0.056, -0.004] | 0.018 |
+
+Bold = CI excludes 0.
+
+### Class-mapped AP@.5 per shared class, 95 % bootstrap CI
+
+| Model | Dataset | | crack | line | dark |
+|---|---|---|---|---|---|
+| P1 YOLOv5s | PV-Multi-Defect (P1) | home | 0.861 [0.689, 0.990] | 0.648 [0.578, 0.739] | 0.933 [0.821, 0.994] |
+| P1 YOLOv5s | ELDDS1400C5 (P2) | cross | 0.011 [0.002, 0.042] | 0.056 [0.035, 0.085] | 0.074 [0.038, 0.132] |
+| P1 GBH-YOLOv5 | PV-Multi-Defect (P1) | home | 0.797 [0.595, 0.956] | 0.649 [0.572, 0.749] | 0.914 [0.826, 0.990] |
+| P1 GBH-YOLOv5 | ELDDS1400C5 (P2) | cross | 0.026 [0.006, 0.057] | 0.079 [0.059, 0.108] | 0.041 [0.020, 0.074] |
+| P2 YOLOv5s | ELDDS1400C5 (P2) | home | 0.759 [0.669, 0.858] | 0.362 [0.276, 0.525] | 0.930 [0.873, 0.964] |
+| P2 YOLOv5s | PV-Multi-Defect (P1) | cross | 0.002 [0.000, 0.005] | 0.055 [0.028, 0.101] | 0.183 [0.079, 0.464] |
+| P2 YOLOv5s+GAM+ASFF+DIoU | ELDDS1400C5 (P2) | home | 0.774 [0.672, 0.870] | 0.339 [0.253, 0.510] | 0.944 [0.893, 0.973] |
+| P2 YOLOv5s+GAM+ASFF+DIoU | PV-Multi-Defect (P1) | cross | 0.002 [0.000, 0.005] | 0.049 [0.027, 0.085] | 0.349 [0.183, 0.604] |
+| P2 YOLOv8s | ELDDS1400C5 (P2) | home | 0.793 [0.693, 0.876] | 0.328 [0.242, 0.520] | 0.960 [0.917, 0.983] |
+| P2 YOLOv8s | PV-Multi-Defect (P1) | cross | 0.003 [0.000, 0.012] | 0.065 [0.033, 0.104] | 0.133 [0.027, 0.261] |

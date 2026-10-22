@@ -94,6 +94,48 @@ def defect_preds(model, preds):
     return {k: v[np.isin(v[:, 0], keep)] for k, v in preds.items()}
 
 
+# class-mapped detection (class_map.py): dataset class id -> shared class id, by visual similarity
+NAMES = {'pv': ['broken', 'hot_spot', 'black_border', 'scratch', 'no_electricity'],
+         'eldds': ['Examined', 'ShortCircuitString', 'ShortCircuitCell', 'Crack', 'MicroCrack', 'OtherError']}
+SHARED = {'fine': ['crack', 'line', 'dark'], 'coarse': ['crack/line', 'dark']}
+MAP = {'pv': {0: 0, 3: 1, 4: 2}, 'eldds': {3: 0, 4: 1, 1: 2, 2: 2}}  # fine ids; unlisted classes are dropped
+TO_COARSE = np.array([0, 0, 1])
+
+
+def relabel(a, ds, variant, col=0):
+    """Rows of a whose class (column col) is in MAP[ds], with the class replaced by the shared id."""
+    keep = np.isin(a[:, col], list(MAP[ds]))
+    a = a[keep].copy()
+    a[:, col] = [MAP[ds][int(c)] for c in a[:, col]]
+    if variant == 'coarse':
+        a[:, col] = TO_COARSE[a[:, col].astype(int)]
+    return a
+
+
+def merged_ids(ds, variant):
+    """Shared ids that receive more than one class of dataset ds."""
+    src = np.array(list(MAP[ds].values()))
+    if variant == 'coarse':
+        src = TO_COARSE[src]
+    ids, n = np.unique(src, return_counts=True)
+    return set(ids[n > 1].tolist())
+
+
+def mapped_preds(model, preds, variant, iou_thr, max_det=300):
+    """Defect predictions relabelled through the model's home map. NMS within each merged shared class; the other
+    classes keep the model's own NMS output unchanged."""
+    from detmetrics import nms_agnostic
+    merged = merged_ids(MODELS[model][1], variant)
+    out = {}
+    for k, v in defect_preds(model, preds).items():
+        d = relabel(v, MODELS[model][1], variant)
+        parts = [nms_agnostic(d[d[:, 0] == c], iou_thr, max_det) if c in merged else d[d[:, 0] == c]
+                 for c in np.unique(d[:, 0])]
+        d = np.concatenate(parts) if parts else d
+        out[k] = d[np.argsort(-d[:, 1], kind='stable')][:max_det]
+    return out
+
+
 def elpv_labels():
     """-> {stem: (p, type)} for the ELPV test cells."""
     lab = {}

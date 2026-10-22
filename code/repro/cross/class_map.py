@@ -31,45 +31,14 @@ import numpy as np  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
-from common import DETECTORS, DS_LABEL, MODELS, OUT, defect_gt, defect_preds, load_gt, load_preds  # noqa: E402
-from detmetrics import box_iou, ci, det_metrics, det_stats, nms_agnostic  # noqa: E402
+from common import (DETECTORS, DS_LABEL, MODELS, NAMES, OUT, SHARED, defect_gt, defect_preds, load_gt,  # noqa: E402
+                    load_preds, mapped_preds, relabel)
+from detmetrics import box_iou, ci, det_metrics, det_stats  # noqa: E402
 
 NMS_IOU = {m: (0.7 if m == 'p2_v8s' else 0.6) for m in DETECTORS}
 DET_THR, NBOOT, CONF_IOU = 0.25, 1000, 0.1
 rng = np.random.default_rng(0)
-NAMES = {'pv': ['broken', 'hot_spot', 'black_border', 'scratch', 'no_electricity'],
-         'eldds': ['Examined', 'ShortCircuitString', 'ShortCircuitCell', 'Crack', 'MicroCrack', 'OtherError']}
-SHARED = {'fine': ['crack', 'line', 'dark'], 'coarse': ['crack/line', 'dark']}
-MAP = {'pv': {0: 0, 3: 1, 4: 2}, 'eldds': {3: 0, 4: 1, 1: 2, 2: 2}}  # dataset class id -> fine shared id
-TO_COARSE = np.array([0, 0, 1])
 FIG = OUT / 'figs'
-
-
-def relabel(a, ds, variant, col=0):
-    """Rows of a whose class (column col) is in MAP[ds], with the class replaced by the shared id."""
-    keep = np.isin(a[:, col], list(MAP[ds]))
-    a = a[keep].copy()
-    a[:, col] = [MAP[ds][int(c)] for c in a[:, col]]
-    if variant == 'coarse':
-        a[:, col] = TO_COARSE[a[:, col].astype(int)]
-    return a
-
-
-def merged_ids(ds, variant):
-    """Shared ids that receive more than one class of dataset ds."""
-    src = np.array(list(MAP[ds].values()))
-    if variant == 'coarse':
-        src = TO_COARSE[src]
-    ids, n = np.unique(src, return_counts=True)
-    return set(ids[n > 1].tolist())
-
-
-def nms_merged(d, merged, iou_thr, max_det=300):
-    """NMS within each merged shared class; other classes keep the model's own NMS output unchanged."""
-    out = [nms_agnostic(d[d[:, 0] == c], iou_thr, max_det) if c in merged else d[d[:, 0] == c]
-           for c in np.unique(d[:, 0])]
-    d = np.concatenate(out) if out else d
-    return d[np.argsort(-d[:, 1], kind='stable')][:max_det]
 
 
 GT = {ds: defect_gt(ds, load_gt(ds)) for ds in ('pv', 'eldds')}
@@ -80,8 +49,7 @@ for variant in ('fine', 'coarse'):
         for ds in ('pv', 'eldds'):
             preds = defect_preds(m, load_preds(m, ds))
             keys = sorted(preds)
-            mg = merged_ids(home, variant)
-            dp = {k: nms_merged(relabel(v, home, variant), mg, NMS_IOU[m]) for k, v in preds.items()}
+            dp = mapped_preds(m, preds, variant, NMS_IOU[m])
             dg = {k: relabel(v, ds, variant) for k, v in GT[ds].items()}
             per = det_stats(dp, dg, keys)
             r = det_metrics(per, keys)
