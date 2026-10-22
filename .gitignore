@@ -40,7 +40,6 @@ results/*
 !results/.gitkeep
 !results/summary.csv
 !results/summary.md
-!results/run_p2_after_p1.sh
 !results/sanity/
 !results/p1/
 !results/p2/
@@ -61,3 +60,5 @@ wandb/
 *.log
 nohup.out
 !results/p[123]/**/*.log
+# byte-identical copy of models/p2/yolov5s.pt, kept only because eval_p2.sh reads it from here
+results/p2/p2_v5s/weights/

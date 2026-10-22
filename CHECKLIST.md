@@ -164,3 +164,10 @@ three evaluation splits. Report: **`COMPARISON.md`**; scripts `code/repro/cross/
 - [x] One evaluator (numpy re-implementation of yolov5 v7.0 metrics), checked against the official home numbers (≤ 0.009 mAP@.5); CNN tile path reproduces P3 home exactly
 - [x] Bootstrap 95 % CIs; sensitivity S1 (foreign input size) and S2 (ELDDS 12×12 tiles)
 - [x] Figures + qualitative examples in `results/cross/figs/`
+- [x] Class-mapped detection (crack / line / dark, coarse variant) + class-confusion figure (`class_map.py`, §3.1)
+- [x] Paired bootstrap tests of the architecture differences + per-class mapped AP CIs (`paired_tests.py`, §3.2)
+- [x] Audit of every claim in `COMPARISON.md` against the numbers (corrections in TL;DR, §1, §3–§10)
+
+## 10. Still to do (not needed for the comparison)
+- [ ] P1 YOLOv5-2 ablation: died at epoch 54/500 on 2026-10-20. Resume: `train.py --resume ../../results/p1/p1_yolov5_2/weights/last.pt` in `code/gbh-yolov5`, **WORKERS=0** on the RTX 4050.
+- [ ] P2 ablations v5_gam, v5_asff + DIoU-only eval: `bash code/repro/run_p2_after_p1.sh` (waits for yolov5_2, then runs them one after another; never in parallel with P1).
