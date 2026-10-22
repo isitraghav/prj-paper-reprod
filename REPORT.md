@@ -15,7 +15,8 @@ modules. Each reports high accuracy on its own dataset, and none tests on a seco
 We retrained every model with the authors' code and settings wherever they were available. We then ran every trained
 model, unchanged, on all three datasets and scored them with one evaluator.
 
-**Reproduction.** Standard models reproduce: within ±0.016 mAP for P2, 2–3 points for P3, and P1's baseline
+**Reproduction.** An audit of every training run against the papers' own statements finds the same code, algorithm
+and settings: 34 of 47 items are identical, and 13 are explained by hardware, software or unstated details. Standard models reproduce: within ±0.016 mAP for P2, 2–3 points for P3, and P1's baseline
 comes out *higher* than reported. The papers' own architectural improvements do not reproduce:
 - P1's GBH-YOLOv5 reaches 84.5 at best, 3.3–4.4 points *below* its own baseline, in two independent runs.
 - P2's improved model gains +0.003 over its baseline, not +0.023.
@@ -139,6 +140,36 @@ official mAP within 0.009, and the P3 CNN's home metrics exactly. 95 % CIs come 
 images. Architecture comparisons use **paired** bootstrap differences on the same resamples. Full protocol:
 `COMPARISON.md` §1.
 
+### 5.4 Fidelity: does our training use what the papers say?
+
+To be sure that a gap is the paper's and not ours, every training run of R2 was audited against the paper's own
+statements. The audit reads each run's own files: the argument list logged when training started, the hyp/opt/args
+yaml, the results files, the model summaries, the git state of the codebases and the weight checksums. It does not
+use our notes. Script: `code/repro/fidelity_check.py`; full table: `results/fidelity_check.md`.
+
+**Result: 47 items checked. 34 are identical to the paper, 13 are explained deviations, and none differs without a
+reason.**
+
+| | Code | Algorithm and settings that match the paper exactly | Explained deviations |
+|---|---|---|---|
+| **P1** | The **authors' own repository** at its published commit. The only local change is one whitespace character in `train.py` line 1, without which it does not run | Adam; lr 0.001; 500 epochs; 960 × 960 input; COCO yolov5s.pt (v5.0, checksummed); all other hyper-parameters = the repo defaults. YOLOv5s and YOLOv5-1 have exactly the paper's layer and parameter counts (224 / 7.06 M, 228 / 7.15 M); YOLOv5s and YOLOv5-1 use batch 16 | GBH uses physical batch 8 × 8 accumulation (64 images per step, as 16 × 4). GBH uses the authors' released config file unchanged; it gives 290 layers / 7.04 M, not the paper's 270 / 7.24 M, and no public config gives the paper's count. YOLOv5-1 was stopped at epoch 203 by a rule fixed in advance. The split has the paper's counts but not its (unpublished) membership |
+| **P2** | ultralytics YOLOv5 **v7.0** and ultralytics 8.0.99 for YOLOv8. Our only addition is one committed patch with GAM, ASFF and DIoU-NMS, implemented from the paper's equations, since no code was released. DIoU is opt-in, so the YOLOv5s baseline trains on stock code | Adam; lr 0.01; 100 epochs; 640 × 640; yolov5s.pt / yolov8s.pt; mosaic off for the last 10 epochs (YOLOv8); all other hyper-parameters = codebase defaults. GFLOPs 16.0 / 28.7 for YOLOv5s / YOLOv8s = the paper | Physical batch 16 × 4 accumulation (64 images per step, as the paper's 32 × 2). The GAM placement is inferred: it was calibrated to the paper's 30.0 GFLOPs. 2 images whose only labels fall outside the 6 classes were excluded (1186 vs 1187 train) |
+| **P3** | No code released; the CNN and SVM were implemented from the paper | VGG-19 (ImageNet) + GAP + FC 4096 + FC 2048 + 1, MSE regression; stage 1 Adam (1e-3, 0.9, 0.999, 1e-8) on the new layers; stage 2 SGD (5e-4, momentum 0.9) on all layers; batch 16; 100 + 100 epochs; the paper's augmentation (2 % scale, 3° rotation, 2 % shift, flips, 90° rotations); the paper's confidence weights and macro-F1; Table 3 split counts in all 16 cells | TensorFlow 2.10 instead of 1.4, which cannot run on current GPUs; the same ImageNet weights are used. Output activation linear: the paper doesn't state it, and a sigmoid output did not train. The SVM's codebook size and PCA dimension are not stated, so they were chosen by training-set cross-validation only |
+
+Two independent checks support the audit:
+1. **Where the paper fully specifies a model, we hit its numbers.** P1's YOLOv5s and YOLOv5-1 architectures match
+   to the layer. P2's YOLOv5s and YOLOv8s land within ±0.016 mAP, and P3's CNN within 2 points.
+2. **A second, independent replication (R1) reaches the same results.** It ran on different hardware, at a different
+   image size and on a different split.
+
+The deviations are of two kinds:
+- **Forced by hardware or software:** physical batch and the TF version. With gradient accumulation, the optimizer
+  still sees the paper's 64 images per step.
+- **Needed because the paper leaves the detail open or contradicts itself:** the GBH architecture, GAM placement,
+  SVM K/PCA and output activation.
+
+None of them can turn a +19.7 gain into −4.4.
+
 ## 6. Results
 
 ### 6.1 RQ1: Home reproduction
@@ -160,8 +191,8 @@ images. Architecture comparisons use **paired** bootstrap differences on the sam
 P1 and P2: mAP@.5 from each codebase's own validator. P3: confidence-weighted accuracy, our evaluator.
 
 - **Standard models reproduce or beat the papers.** P2's three models are within ±0.016. P3's CNN is within 2
-  points, and its F1 is 2.4–3.8 below if the paper's undefined F1 is read as support-weighted. P1's plain YOLOv5s is
-  9.7 points *above* the paper in R1 and 8.4 above in R2.
+  points on accuracy. Its macro-F1, which is the paper's definition ("averaged over the individual per-class F1
+  scores"), is 84.20 against 88.39. P1's plain YOLOv5s is 9.7 points *above* the paper in R1 and 8.4 above in R2.
 - **P1's proposed models are 8–13 points below the paper in both runs.** Our pipeline is not the cause: the same
   pipeline reproduces P1's baseline and P2's models.
 
@@ -326,6 +357,9 @@ YOLOv8s draws column-height boxes, its ShortCircuitString shape.
 
 ## 8. Conclusion
 
+0. **The reproduction is faithful.** Every training run uses the code, algorithm and settings its paper states:
+   34 of 47 audited items are identical, and the other 13 are explained by hardware, software or details the paper
+   leaves open (§5.4). The gaps below are therefore the papers', not the reproduction's.
 1. **Reproducibility (RQ1).** Standard models reproduce. P2's YOLOv5s / YOLOv8s are within ±0.016 mAP, P3's CNN
    within 2 points, and P1's YOLOv5s scores 87.8 against 78.1 reported. P1's proposed GBH-YOLOv5 reaches at most
    84.5 against the claimed 97.8, in two independent runs on different hardware, image sizes and splits.
@@ -402,6 +436,8 @@ YOLOv8s draws column-height boxes, its ShortCircuitString shape.
 
 - **Main study:** `COMPARISON.md` §10 (`code/repro/cross/`). Claim-by-claim check: `CLAIMS.md`. Dataset check:
   `code/repro/check_datasets.py`.
+- **Fidelity audit (§5.4):** `envs/p1/Scripts/python.exe -I code/repro/fidelity_check.py`. Output:
+  `results/fidelity_check.md`.
 - **Second replication:**
   - `bash code/repro/replication/run_r1_dumps.sh <R1 folder>`, then
     `envs/p3cnn/Scripts/python.exe -I code/repro/replication/r1_eval.py <R1 folder>`. Output:

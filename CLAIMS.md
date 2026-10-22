@@ -87,7 +87,7 @@ Test split, 656 cells. Accuracy and F1 are weighted by label confidence (Table 2
 | # | Paper claims | Ours | Verdict |
 |---|---|---|---|
 | 3.1 | Split: 1968 train / 656 test cells, per type and label (Table 3) | Identical | ✅ |
-| 3.2 | CNN accuracy 88.42 %, F1 88.39 % | 86.49 / 84.20 (seed 0). Three seeds: 85.78 ± 0.76 / 83.38 ± 0.77 | ◐ Accuracy is 1.9–2.6 below the paper. With macro F1 we are 4–5 below; with support-weighted F1 (86.00 / 85.25 / 84.56) only 2.4–3.8 below. The paper's F1 ≈ accuracy (88.39 vs 88.42, SVM 82.52 vs 82.44) fits a support-weighted F1, which the paper doesn't define |
+| 3.2 | CNN accuracy 88.42 %, F1 88.39 % | 86.49 / 84.20 (seed 0). Three seeds: 85.78 ± 0.76 / 83.38 ± 0.77 | ◐ Accuracy is 1.9–2.6 below the paper. F1 is 4–5 below with the paper's definition, macro F1 ("averaged over the individual per-class F1 scores", §4.2). The paper's F1 ≈ accuracy (88.39 vs 88.42, SVM 82.52 vs 82.44) would fit a support-weighted F1; ours would then be 86.00 / 85.25 / 84.56 (2.4–3.8 below). We report macro F1 as primary because that is what the paper states |
 | 3.3 | SVM (KAZE/VGG + VLAD + linear SVM) accuracy 82.44 %, F1 82.52 %, AUC 88.51 % | Paper's stated defaults: 69.70 / 66.32 / 74.88. With the unstated details picked by training-CV: 79.65 / 77.09 / 84.08 | ◐ Only after filling in details the paper doesn't state. The gap comes from keypoint density |
 | 3.4 | CNN is more accurate than the SVM | 86.5 vs 79.7 (or 69.7) | ✅ |
 | 3.5 | The two differ "in total by only about 6 %" | 6.8 points (better-specified SVM) | ✅ (16.8 with the paper's defaults) |
@@ -126,7 +126,7 @@ Script: `code/repro/check_datasets.py`. Output: `results/dataset_check.md`.
 4. **P2 TTA protocol.** The paper says "three different resolutions" but not the base size. At `--img 832`, which is the size ultralytics' TTA example uses, our numbers are 0.774 / 0.773 / 0.761 (paper 0.766 / 0.777 / 0.775). At 640 they are 0.766 / 0.758 / 0.753. We keep 640 as primary because it is the paper's stated image size. Switching after seeing results would be cherry-picking.
 5. **One seed per detector.** P2's +0.023 and P1's +19.7 are single-run differences in the papers too. *Fix:* 2 more seeds of P2 YOLOv5s and Improved (≈ 8 h on the RTX 4050) give the seed-to-seed spread to compare against.
 6. **Smaller physical batch** (P1 GBH 8 instead of 16; P2 16 instead of 32). Only BatchNorm statistics differ, since accumulation keeps 64 images per step. *Fix:* a ≥ 16 GB GPU. Expected effect: small.
-7. **P3 metric definition** (F1, see 3.2). *Fix:* report support-weighted F1 next to macro F1. Done in this file.
+7. **P3 metric definition** (F1, see 3.2). The paper defines F1 as macro (per-class average), as ours. Its F1 ≈ accuracy pattern would fit a support-weighted F1 instead, so that variant is reported alongside. Done in this file.
 
 ## What this means for the review
 

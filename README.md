@@ -27,6 +27,7 @@ figures: **`COMPARISON.md`**.
 |---|---|
 | **`REPORT.md`** | **The full report for the review: motivation, objectives, both replications, home and cross-dataset results, conclusion** |
 | `COMPARISON.md` | The cross-dataset comparison: protocol, results, figures, discussion and limitations for the review |
+| `results/fidelity_check.md` | Audit of every training run against the paper's stated code, algorithm and settings (`code/repro/fidelity_check.py`) |
 | `CLAIMS.md` | Every checkable claim of the three papers, marked confirmed / partly / not confirmed / not tested, plus internal inconsistencies |
 | `init.md` | Runbook: settings taken from each paper, environment setup, deviations from the papers (§11, P3-…), progress log (§13) |
 | `CHECKLIST.md` | Status tracker per paper (environments, data, training, evaluation), the comparison (§9) and what is left (§10) |

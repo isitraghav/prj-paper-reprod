@@ -41,6 +41,7 @@ results/*
 !results/summary.csv
 !results/summary.md
 !results/dataset_check.md
+!results/fidelity_check.md
 !results/sanity/
 !results/p1/
 !results/p2/
