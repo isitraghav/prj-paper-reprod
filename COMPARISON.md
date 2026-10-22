@@ -22,7 +22,10 @@ Windows 11.
    P1 and P3 data. The P3 CNN is at chance on P1 data (0.50) and weakly above chance on ELDDS (0.59).
 3. **The one defect concept that transfers is the dark, unpowered cell.** P2's models recover **50–56 %** of P1's
    `no_electricity` boxes, which matches their own `ShortCircuitCell/LowPowerCell` class, and ≤ 17 % of every other
-   P1 class (Fig. 6). P1's models find 27–30 % of ELDDS `Crack` boxes and ≤ 19 % of the rest.
+   P1 class (Fig. 6). P1's models find 27–30 % of ELDDS `Crack` boxes and ≤ 19 % of the rest. With the classes
+   mapped by visual similarity (crack / line / dark, §3.1), cross mAP@.5 is still only **0.047–0.133** against
+   0.68–0.81 at home. `dark` is the one shared class with real transfer (P2 → P1 AP 0.13–0.35), and `crack` has none
+   (AP ≤ 0.03). The taxonomy mismatch is not what breaks transfer.
 4. **The papers' headline improvements are dataset-internal and small, even at home.** With one evaluator, GBH-YOLOv5
    is *below* its own YOLOv5s baseline (0.768 vs 0.823 class-agnostic mAP@.5; class-aware 0.823 vs 0.856). P2's
    three models are statistically indistinguishable (0.464 / 0.466 / 0.479, overlapping 95 % CIs). The improvements
@@ -48,6 +51,8 @@ defective/functional). So the comparison uses two shared tasks that every pair o
 **Task A: class-agnostic detection** (5 detectors × 2 box datasets). Every defect class is merged into one `defect`
 class. ELDDS `Examined` (the panel outline, not a defect) is removed from GT and from P2's predictions. Merged
 predictions get class-agnostic NMS at the model's own IoU, max 300 per image. Metrics: P, R, mAP@.5, mAP@.5:.95.
+Variant (§3.1): **class-mapped detection**. The classes with a visual counterpart are mapped onto shared classes
+crack / line / dark and scored class-aware; the others are dropped.
 
 **Task B: defective-vs-functional tiles** (6 models × 3 datasets). This is P3's task, so the cell classifier can run on
 the module datasets. The tile size aims at "about one cell":
@@ -133,6 +138,69 @@ the 5 classes equally.
   whole dark cell). broken 0.06–0.17, scratch 0.09–0.14, hot_spot and black_border **0.00**.
 - P1 models on ELDDS find Crack 0.27–0.30, MicroCrack 0.17–0.19, ShortCircuitCell 0.07–0.11, ShortCircuitString
   0.02–0.06, OtherError 0.03.
+
+### 3.1 Class-mapped detection (shared classes)
+
+Instead of merging everything into one `defect` class, the classes with a visual counterpart in the other dataset
+are mapped onto three shared classes. Classes without a counterpart are dropped from GT and from predictions:
+
+| Shared class | PV-Multi-Defect (P1) | ELDDS1400C5 (P2) | appearance in EL |
+|---|---|---|---|
+| **crack** | broken | Crack | dark star / wedge-shaped crack |
+| **line** | scratch | MicroCrack | short thin dark line |
+| **dark** | no_electricity | ShortCircuitString + ShortCircuitCell/LowPowerCell | whole cell or string dark |
+| *dropped* | hot_spot (bright patch), black_border (dark strip at a cell edge) | OtherError (grab-bag), Examined (outline) | no counterpart |
+
+The mapping comes from GT crops of every class and is confirmed by what each paper's models predict on the other
+dataset (Fig. 7). In both directions, the mapped counterpart is the class a foreign model most often predicts for
+that GT class. There are two exceptions: crack (below), and ELDDS ShortCircuitCell, which P1 calls *scratch* (0.18)
+about as often as *no_electricity* (0.15).
+- P2's models call PV no_electricity *ShortCircuitString* (0.74). P1's models call ELDDS ShortCircuitString
+  *no_electricity* (0.69).
+- ELDDS MicroCrack becomes P1 *scratch* (0.63), and PV scratch becomes P2 *MicroCrack* (0.18; 0.78 are missed).
+- Crack is the weak pair. P1's models call ELDDS Crack *scratch* (0.50) more often than *broken* (0.04). P2's models
+  call PV broken *MicroCrack* (0.24). So a coarse variant merges crack + line into one class.
+- P1's dropped classes are invisible to P2's models: 0.00 of hot_spot and 0.01 of black_border are detected. P1
+  calls 0.27 of ELDDS OtherError *scratch*. OtherError is a mix of defect types, so it stays unmapped.
+
+![Foreign-model class confusion](results/cross/figs/fig7_class_confusion.png)
+
+Each model's predictions go through its home dataset's map. A shared class that merges two of the model's classes
+(P2 `dark`; `crack/line` in the coarse variant) is re-NMSed at the model's IoU; every other class keeps the model's
+own output. Home and cross are scored in the same shared space, class-aware, with the same AP code and bootstrap as
+§3. Check: each unmerged home AP equals the paper-metric per-class AP of §2 within 0.001 (e.g. P1 v5s broken 0.861,
+P2 v8s Crack 0.793).
+
+![Class-mapped AP](results/cross/figs/fig8_mapped_map.png)
+
+| Model | Dataset | | crack | line | dark | mAP@.5 [95 % CI] | coarse mAP@.5 [95 % CI] |
+|---|---|---|---|---|---|---|---|
+| P1 YOLOv5s | PV-Multi-Defect | home | 0.861 | 0.648 | 0.933 | **0.814** [0.747, 0.876] | 0.808 [0.747, 0.863] |
+| P1 YOLOv5s | ELDDS1400C5 | cross | 0.011 | 0.056 | 0.074 | 0.047 [0.032, 0.071] | 0.066 [0.045, 0.097] |
+| P1 GBH-YOLOv5 | PV-Multi-Defect | home | 0.797 | 0.649 | 0.914 | **0.787** [0.710, 0.859] | 0.795 [0.739, 0.862] |
+| P1 GBH-YOLOv5 | ELDDS1400C5 | cross | 0.026 | 0.079 | 0.041 | 0.049 [0.036, 0.067] | 0.065 [0.049, 0.087] |
+| P2 YOLOv5s | ELDDS1400C5 | home | 0.759 | 0.362 | 0.930 | **0.684** [0.637, 0.752] | 0.663 [0.607, 0.742] |
+| P2 YOLOv5s | PV-Multi-Defect | cross | 0.002 | 0.055 | 0.183 | 0.080 [0.046, 0.183] | 0.112 [0.061, 0.251] |
+| P2 Improved | ELDDS1400C5 | home | 0.774 | 0.339 | 0.944 | **0.686** [0.641, 0.752] | 0.659 [0.607, 0.747] |
+| P2 Improved | PV-Multi-Defect | cross | 0.002 | 0.049 | **0.349** | 0.133 [0.076, 0.208] | 0.190 [0.101, 0.312] |
+| P2 YOLOv8s | ELDDS1400C5 | home | 0.793 | 0.328 | 0.960 | **0.694** [0.648, 0.773] | 0.666 [0.616, 0.759] |
+| P2 YOLOv8s | PV-Multi-Defect | cross | 0.003 | 0.065 | 0.133 | 0.067 [0.030, 0.115] | 0.093 [0.038, 0.159] |
+
+GT boxes kept: PV crack 18, line 238, dark 36 (292 of 717); ELDDS crack 84, line 1161, dark 184 (1429 of 2340).
+Full tables (P, R, mAP@.5:.95, confusion counts): `results/cross/tables_classmap.md`.
+
+- **Aligning the taxonomy doesn't rescue transfer.** Cross mAP@.5 is **0.047–0.133** against 0.68–0.81 at home,
+  and at most 0.19 in the coarse variant. The class mismatch is not the main cause of the collapse; the image domain
+  (field of view, scale, acquisition) is.
+- **`dark` is the only class that partly transfers**, and only from P2 to P1: AP 0.13–0.35. P2-Improved's 0.349 is the
+  single best cross-dataset AP in the study. P1's models reach only 0.04–0.07 on ELDDS dark, because they find
+  ShortCircuitString but not the single dark cells (ShortCircuitCell 0.15).
+- **`crack` doesn't transfer at all** (AP ≤ 0.026), although the two classes look alike. Each dataset's cracks get
+  detected as the other's thin-line class, or missed.
+- P2-on-PV rises from 0.004–0.015 (class-agnostic, §3) to 0.067–0.133 here. The reason is that the 425 hot_spot and
+  black_border boxes (59 % of PV defects), which P2's models never detect, are out of the score. P1-on-ELDDS barely
+  moves (0.035–0.053 → 0.047–0.049).
+- The P2 architectures are again tied: the cross CIs overlap, as do the home ones.
 
 ## 4. Task B: defective vs functional, full 3 × 3
 
@@ -254,9 +322,11 @@ codebase's model summary (thop at 640, scaled by (960/640)² for P1).
   (P1 then upsamples to 960). ELDDS shows a full 78-cell panel at 640 px, about 40 px per cell. ELPV shows one
   perspective-corrected cell at 300 px. Upscaling helps some cross pairs and hurts others (§6, S1), so input size
   alone doesn't close the gap.
-- **The taxonomies are incompatible.** The concepts that exist in more than one dataset (dark/inactive cell; crack)
-  are the only ones that transfer at all (§3). A unified defect taxonomy, e.g. IEC TS 60904-13 EL categories, is a
-  prerequisite for cross-dataset benchmarks.
+- **The taxonomies are incompatible, but that is not the main problem.** Only three concepts have a counterpart
+  across P1 and P2 (crack, thin line, dark cell/string; §3.1). Mapping onto them raises cross mAP@.5 only to
+  0.05–0.13 (home 0.68–0.81), and only the dark class transfers in a usable way. A unified defect taxonomy, e.g. IEC
+  TS 60904-13 EL categories, is necessary for cross-dataset benchmarks, but it isn't enough: the image domain has to
+  match too.
 - **Annotation conventions differ.** ELDDS boxes a module outline (`Examined`) and many tiny MicroCracks. P1 boxes
   hot spots and black borders that have no ELDDS counterpart. ELPV has only cell-level, partly uncertain labels
   (p ∈ {⅓, ⅔}). The same pixels count as different "defects" in each.
@@ -289,8 +359,10 @@ envs/p3cnn/Scripts/python.exe -I code/repro/cross/cross_eval.py               # 
 envs/p3cnn/Scripts/python.exe -I code/repro/cross/report.py                   # figs/ + tables.md
 # sensitivity (S1 dumps at foreign input size into preds_sens/, S2 12x12 tiles), then:
 envs/p3cnn/Scripts/python.exe -I code/repro/cross/sensitivity.py              # sensitivity.json, tables_sensitivity.md
+envs/p3cnn/Scripts/python.exe -I code/repro/cross/class_map.py                # §3.1: class_map.json, tables_classmap.md, fig7-8
 ```
 
 Files: `code/repro/cross/` (scripts), `results/cross/metrics.json` (every number above), `results/cross/tables.md`,
-`results/cross/tables_sensitivity.md`, `results/cross/figs/`, `results/cross/preds*/` (raw per-image detections),
+`results/cross/tables_sensitivity.md`, `results/cross/class_map.json`, `results/cross/tables_classmap.md`,
+`results/cross/figs/`, `results/cross/preds*/` (raw per-image detections),
 `results/cross/tiles*.csv`.

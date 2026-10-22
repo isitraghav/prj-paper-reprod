@@ -1,0 +1,74 @@
+fine   p1_yolov5s   pv     home  mAP50 0.814 [0.747, 0.876] mAP 0.485 crack 0.861 line 0.648 dark 0.933
+fine   p1_yolov5s   eldds  cross mAP50 0.047 [0.032, 0.071] mAP 0.019 crack 0.011 line 0.056 dark 0.074
+fine   p1_gbh       pv     home  mAP50 0.787 [0.710, 0.859] mAP 0.511 crack 0.797 line 0.649 dark 0.914
+fine   p1_gbh       eldds  cross mAP50 0.049 [0.036, 0.067] mAP 0.017 crack 0.026 line 0.079 dark 0.041
+fine   p2_v5s       pv     cross mAP50 0.080 [0.046, 0.183] mAP 0.025 crack 0.002 line 0.055 dark 0.183
+fine   p2_v5s       eldds  home  mAP50 0.684 [0.637, 0.752] mAP 0.395 crack 0.759 line 0.362 dark 0.930
+fine   p2_improved  pv     cross mAP50 0.133 [0.076, 0.208] mAP 0.030 crack 0.002 line 0.049 dark 0.349
+fine   p2_improved  eldds  home  mAP50 0.686 [0.641, 0.752] mAP 0.392 crack 0.774 line 0.339 dark 0.944
+fine   p2_v8s       pv     cross mAP50 0.067 [0.030, 0.115] mAP 0.025 crack 0.003 line 0.065 dark 0.133
+fine   p2_v8s       eldds  home  mAP50 0.694 [0.648, 0.773] mAP 0.428 crack 0.793 line 0.328 dark 0.960
+coarse p1_yolov5s   pv     home  mAP50 0.808 [0.747, 0.863] mAP 0.469 crack/line 0.682 dark 0.933
+coarse p1_yolov5s   eldds  cross mAP50 0.066 [0.045, 0.097] mAP 0.026 crack/line 0.058 dark 0.074
+coarse p1_gbh       pv     home  mAP50 0.795 [0.739, 0.862] mAP 0.498 crack/line 0.676 dark 0.914
+coarse p1_gbh       eldds  cross mAP50 0.065 [0.049, 0.087] mAP 0.020 crack/line 0.088 dark 0.041
+coarse p2_v5s       pv     cross mAP50 0.112 [0.061, 0.251] mAP 0.034 crack/line 0.040 dark 0.183
+coarse p2_v5s       eldds  home  mAP50 0.663 [0.607, 0.742] mAP 0.431 crack/line 0.396 dark 0.930
+coarse p2_improved  pv     cross mAP50 0.190 [0.101, 0.312] mAP 0.042 crack/line 0.031 dark 0.349
+coarse p2_improved  eldds  home  mAP50 0.659 [0.607, 0.747] mAP 0.433 crack/line 0.375 dark 0.944
+coarse p2_v8s       pv     cross mAP50 0.093 [0.038, 0.159] mAP 0.036 crack/line 0.054 dark 0.133
+coarse p2_v8s       eldds  home  mAP50 0.666 [0.616, 0.759] mAP 0.470 crack/line 0.372 dark 0.960
+### Class-mapped detection (shared classes crack / line / dark), AP@.5
+
+| Model | Dataset | | crack | line | dark | mAP@.5 [95% CI] | mAP@.5:.95 | P | R |
+|---|---|---|---|---|---|---|---|---|---|
+| P1 YOLOv5s | PV-Multi-Defect (P1) | home | 0.861 | 0.648 | 0.933 | 0.814 [0.747, 0.876] | 0.485 | 0.813 | 0.808 |
+| P1 YOLOv5s | ELDDS1400C5 (P2) | cross | 0.011 | 0.056 | 0.074 | 0.047 [0.032, 0.071] | 0.019 | 0.056 | 0.144 |
+| P1 GBH-YOLOv5 | PV-Multi-Defect (P1) | home | 0.797 | 0.649 | 0.914 | 0.787 [0.710, 0.859] | 0.511 | 0.827 | 0.727 |
+| P1 GBH-YOLOv5 | ELDDS1400C5 (P2) | cross | 0.026 | 0.079 | 0.041 | 0.049 [0.036, 0.067] | 0.017 | 0.195 | 0.040 |
+| P2 YOLOv5s | ELDDS1400C5 (P2) | home | 0.759 | 0.362 | 0.930 | 0.684 [0.637, 0.752] | 0.395 | 0.689 | 0.651 |
+| P2 YOLOv5s | PV-Multi-Defect (P1) | cross | 0.002 | 0.055 | 0.183 | 0.080 [0.046, 0.183] | 0.025 | 0.180 | 0.148 |
+| P2 YOLOv5s+GAM+ASFF+DIoU | ELDDS1400C5 (P2) | home | 0.774 | 0.339 | 0.944 | 0.686 [0.641, 0.752] | 0.392 | 0.700 | 0.671 |
+| P2 YOLOv5s+GAM+ASFF+DIoU | PV-Multi-Defect (P1) | cross | 0.002 | 0.049 | 0.349 | 0.133 [0.076, 0.208] | 0.030 | 0.199 | 0.210 |
+| P2 YOLOv8s | ELDDS1400C5 (P2) | home | 0.793 | 0.328 | 0.960 | 0.694 [0.648, 0.773] | 0.428 | 0.678 | 0.697 |
+| P2 YOLOv8s | PV-Multi-Defect (P1) | cross | 0.003 | 0.065 | 0.133 | 0.067 [0.030, 0.115] | 0.025 | 0.104 | 0.085 |
+
+GT boxes kept: PV-Multi-Defect (P1) crack 18, line 238, dark 36; ELDDS1400C5 (P2) crack 84, line 1161, dark 184.
+
+### Coarse variant (crack + line merged), AP@.5
+
+| Model | Dataset | | crack/line | dark | mAP@.5 [95% CI] |
+|---|---|---|---|---|---|
+| P1 YOLOv5s | PV-Multi-Defect (P1) | home | 0.682 | 0.933 | 0.808 [0.747, 0.863] |
+| P1 YOLOv5s | ELDDS1400C5 (P2) | cross | 0.058 | 0.074 | 0.066 [0.045, 0.097] |
+| P1 GBH-YOLOv5 | PV-Multi-Defect (P1) | home | 0.676 | 0.914 | 0.795 [0.739, 0.862] |
+| P1 GBH-YOLOv5 | ELDDS1400C5 (P2) | cross | 0.088 | 0.041 | 0.065 [0.049, 0.087] |
+| P2 YOLOv5s | ELDDS1400C5 (P2) | home | 0.396 | 0.930 | 0.663 [0.607, 0.742] |
+| P2 YOLOv5s | PV-Multi-Defect (P1) | cross | 0.040 | 0.183 | 0.112 [0.061, 0.251] |
+| P2 YOLOv5s+GAM+ASFF+DIoU | ELDDS1400C5 (P2) | home | 0.375 | 0.944 | 0.659 [0.607, 0.747] |
+| P2 YOLOv5s+GAM+ASFF+DIoU | PV-Multi-Defect (P1) | cross | 0.031 | 0.349 | 0.190 [0.101, 0.312] |
+| P2 YOLOv8s | ELDDS1400C5 (P2) | home | 0.372 | 0.960 | 0.666 [0.616, 0.759] |
+| P2 YOLOv8s | PV-Multi-Defect (P1) | cross | 0.054 | 0.133 | 0.093 [0.038, 0.159] |
+
+### Foreign-model class confusion (fraction of GT boxes; IoU >= 0.1, conf >= 0.25)
+
+**P1 models (P1 YOLOv5s, P1 GBH-YOLOv5) on ELDDS1400C5 (P2)**
+
+| GT \ predicted | GT boxes | broken | hot_spot | black_border | scratch | no_electricity | none |
+|---|---|---|---|---|---|---|---|
+| ShortCircuitString | 50 | 0.06 | 0.00 | 0.00 | 0.00 | 0.69 | 0.25 |
+| ShortCircuitCell | 134 | 0.07 | 0.00 | 0.00 | 0.18 | 0.15 | 0.60 |
+| Crack | 84 | 0.04 | 0.00 | 0.02 | 0.50 | 0.00 | 0.43 |
+| MicroCrack | 1161 | 0.00 | 0.00 | 0.00 | 0.63 | 0.00 | 0.36 |
+| OtherError | 911 | 0.00 | 0.00 | 0.00 | 0.27 | 0.00 | 0.73 |
+
+**P2 models (P2 YOLOv5s, P2 YOLOv5s+GAM+ASFF+DIoU, P2 YOLOv8s) on PV-Multi-Defect (P1)**
+
+| GT \ predicted | GT boxes | ShortCircuitString | ShortCircuitCell | Crack | MicroCrack | OtherError | none |
+|---|---|---|---|---|---|---|---|
+| broken | 18 | 0.04 | 0.00 | 0.07 | 0.24 | 0.00 | 0.65 |
+| hot_spot | 369 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 1.00 |
+| black_border | 56 | 0.00 | 0.00 | 0.01 | 0.00 | 0.00 | 0.99 |
+| scratch | 238 | 0.00 | 0.00 | 0.01 | 0.18 | 0.04 | 0.78 |
+| no_electricity | 36 | 0.74 | 0.00 | 0.00 | 0.00 | 0.00 | 0.26 |
+
