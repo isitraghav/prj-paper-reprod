@@ -14,6 +14,7 @@ Paper -> here:
   so this is mathematically the same update as one batch of 16.
 
 usage (repo root): envs/p3cnn/Scripts/python.exe -I code/repro/p3/train_cnn.py --out results/p3/cnn [--epochs 100]
+       TensorFlow 2.12 (Docker, GPU): bash code/repro/p3/cnn_tf212.sh <seed>. Training needs a GPU; without one it exits.
 """
 import argparse
 import csv
@@ -49,6 +50,8 @@ out.mkdir(parents=True, exist_ok=True)
 random.seed(a.seed)
 np.random.seed(a.seed)
 tf.random.set_seed(a.seed)
+if not tf.config.list_physical_devices('GPU'):  # GPU only: never fall back to training on the CPU
+    sys.exit('TensorFlow sees no GPU: refusing to train on the CPU')
 for g in tf.config.list_physical_devices('GPU'):
     tf.config.experimental.set_memory_growth(g, True)
 LOG = open(out / 'train.log', 'a', buffering=1)

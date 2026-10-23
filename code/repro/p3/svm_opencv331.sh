@@ -3,6 +3,7 @@
 # counts KAZE keypoints (3.3.1 vs 3.4.18) and runs code/repro/p3/train_svm.py inside the container.
 # usage (repo root): bash code/repro/p3/svm_opencv331.sh
 set -euo pipefail
+export MSYS_NO_PATHCONV=1  # Git Bash: keep container paths (/repo) unconverted
 PRJ="$(cd "$(dirname "$0")/../../.." && (pwd -W 2>/dev/null || pwd))"
 OUT="$PRJ/results/p3/svm_cv331"; mkdir -p "$OUT"
 docker build -t prj-p3-opencv331 "$PRJ/code/repro/p3/docker" > "$OUT/docker_build.log" 2>&1

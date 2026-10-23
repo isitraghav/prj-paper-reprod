@@ -29,6 +29,10 @@ SRC = {'pv': (ROOT / 'datasets/pv_multi_defect_yolo/train.txt', ROOT / 'datasets
               5, "['broken', 'hot_spot', 'black_border', 'scratch', 'no_electricity']"),
        'eldds': (ROOT / 'datasets/eldds_yolo/train.txt', ROOT / 'datasets/eldds_yolo/test.txt',
                  6, "['Examined', 'ShortCircuitString', 'ShortCircuitCell-LowPowerCell', 'Crack', 'MicroCrack', 'OtherError']")}
+# the GBH fork cannot read the numpy-format label cache that yolov5 v7.0 wrote next to eldds_yolo/test.txt
+# (torch.load -> UnpicklingError), so the ELDDS runs score on a copy of the list with its own cache
+(DS / 'eldds_test.txt').write_text(open(SRC['eldds'][1]).read())
+SRC['eldds'] = (SRC['eldds'][0], DS / 'eldds_test.txt') + SRC['eldds'][2:]
 jobs = []
 for ds, (train, val, nc, names) in SRC.items():
     pool = sorted(l.strip() for l in open(train) if l.strip())
